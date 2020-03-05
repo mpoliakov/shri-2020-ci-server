@@ -1,0 +1,34 @@
+{
+  "name": "shri-2020-homework-1",
+  "version": "1.0.0",
+  "description": "Адаптивная вёрстка",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp start",
+    "build": "gulp build",
+    "stylelint": "stylelint \"src/**/*.scss\" --syntax scss",
+    "test": "npm run stylelint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mpoliakov/shri-2020-homework-1.git"
+  },
+  "author": "Максим Поляков",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mpoliakov/shri-2020-homework-1/issues"
+  },
+  "homepage": "https://github.com/mpoliakov/shri-2020-homework-1#readme",
+  "devDependencies": {
+    "autoprefixer": "9.7.4",
+    "browser-sync": "2.26.7",
+    "del": "5.1.0",
+    "gulp": "4.0.2",
+    "gulp-plumber": "1.2.1",
+    "gulp-postcss": "8.0.0",
+    "gulp-rename": "2.0.0",
+    "gulp-sass": "4.0.2",
+    "stylelint": "13.2.0",
+    "stylelint-config-standard": "20.0.0"
+  }
+}
