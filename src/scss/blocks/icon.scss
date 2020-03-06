@@ -1,0 +1,10 @@
+.icon {
+  display: block;
+  content: "";
+  width: 12px;
+  height: 12px;
+
+  &--settings {
+    background: url("../img/settings-icon.svg") no-repeat center center;
+  }
+}

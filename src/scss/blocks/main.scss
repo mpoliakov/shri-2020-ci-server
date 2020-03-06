@@ -1,0 +1,21 @@
+@import "../includes/variables";
+
+.main {
+  min-height: calc(100vh - #{$header-height-mobile} - #{$footer-height-mobile});
+  box-sizing: border-box;
+
+  &--start-screen {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.main__placeholder {
+  align-self: center;
+}
+
+@media (min-width: $desktop-width) {
+  .main {
+    min-height: calc(100vh - #{$header-height-desktop} - #{$footer-height-desktop});
+  }
+}

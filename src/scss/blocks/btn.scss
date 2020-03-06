@@ -1,0 +1,52 @@
+@import "../includes/variables";
+
+.btn {
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: middle;
+  padding: 0 20px;
+  color: black;
+  font-size: 13px;
+  line-height: 36px;
+  font-weight: normal;
+  text-align: center;
+  background-color: $btn-background-color;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+
+  &--accent {
+    background-color: $color-accent;
+  }
+
+  &--small {
+    line-height: 28px;
+  }
+
+  &--with-icon {
+    padding: 8px;
+
+    .btn__text {
+      display: none;
+    }
+  }
+}
+
+@media (min-width: $desktop-width) {
+  .btn--with-icon {
+    padding: 0 20px 0 38px;
+    position: relative;
+
+    .btn__text {
+      display: inline;
+    }
+
+    .btn__icon {
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      margin-top: -6px;
+    }
+  }
+}
+
