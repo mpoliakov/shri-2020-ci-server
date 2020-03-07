@@ -1,9 +1,15 @@
 @import "includes/variables";
 @import "includes/mixins";
+@import "includes/fonts";
 @import "includes/global";
 @import "blocks/btn";
+@import "blocks/build-history";
+@import "blocks/build-log";
+@import "blocks/build-settings";
+@import "blocks/build-card";
 @import "blocks/container";
 @import "blocks/footer";
+@import "blocks/form";
 @import "blocks/header";
 @import "blocks/heading";
 @import "blocks/icon";

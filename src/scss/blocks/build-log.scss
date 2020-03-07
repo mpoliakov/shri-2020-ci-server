@@ -1,0 +1,8 @@
+@import "../includes/variables";
+
+.build-log {
+  padding: $container-padding-y $container-padding-x;
+  margin: $container-padding-y -#{$container-padding-x};
+  background-color: $bg-color;
+  overflow-x: scroll;
+}

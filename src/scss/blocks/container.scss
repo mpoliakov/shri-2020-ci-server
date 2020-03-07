@@ -1,7 +1,8 @@
 @import "../includes/variables";
 
 .container {
-  padding: 0 16px;
+  box-sizing: border-box;
+  padding: $container-padding-y $container-padding-x;
   margin: 0 auto;
-  max-width: $desktop-width;
+  max-width: $container-max-width;
 }

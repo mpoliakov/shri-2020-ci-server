@@ -1,15 +1,43 @@
 "use strict";
 
 const gulp = require("gulp");
+const rename = require("gulp-rename");
 const plumber = require("gulp-plumber");
 const sass = require("gulp-sass");
 const postcss = require("gulp-postcss");
-const rename = require("gulp-rename");
 const autoprefixer = require("autoprefixer");
+const svgstore = require("gulp-svgstore");
+const posthtml = require("gulp-posthtml");
+const include = require("posthtml-include");
 const server = require("browser-sync");
 const del = require('del');
 
-gulp.task("build:css", async () => {
+gulp.task("copy:img", async () => {
+  return gulp.src("src/img/*.{svg,jpg,png}")
+    .pipe(rename({dirname: ""}))
+    .pipe(gulp.dest("build/img"));
+});
+
+gulp.task("sprite", function () {
+  return gulp.src("src/img/icons/*.svg")
+    .pipe(svgstore({
+      inlineSvg: true
+    }))
+    .pipe(rename("sprite.svg"))
+    .pipe(gulp.dest("build/img"));
+});
+
+gulp.task("img", gulp.series("copy:img", "sprite"));
+
+gulp.task("html", function(){
+  return gulp.src("src/*.html")
+    .pipe(posthtml([
+      include()
+    ]))
+    .pipe(gulp.dest("build"));
+});
+
+gulp.task("css", async () => {
   return gulp.src("src/scss/style.scss")
     .pipe(plumber())
     .pipe(sass())
@@ -19,23 +47,11 @@ gulp.task("build:css", async () => {
     .pipe(gulp.dest("build/css"));
 });
 
-gulp.task("copy:img", async () => {
-  return gulp.src("src/**/*.{svg,jpg,png}")
-    .pipe(rename({dirname: ""}))
-    .pipe(gulp.dest("build/img"));
-});
-
-gulp.task("copy:html", async () => {
-  return gulp.src("src/**/*.html")
-    .pipe(rename({dirname: ""}))
-    .pipe(gulp.dest("build"));
-});
-
 gulp.task("clean", function(){
   return del("build");
 });
 
-gulp.task("build", gulp.series("clean", "copy:html", "copy:img", "build:css"));
+gulp.task("build", gulp.series("clean", "img", "html", "css"));
 
 gulp.task("refresh", async (done) => {
   server.reload();
@@ -52,9 +68,9 @@ gulp.task("server", async () => {
     ui: false
   });
 
-  gulp.watch("src/**/*.html", gulp.series("copy:html", "refresh"));
-  gulp.watch("src/**/*.{svg,jpg,png}", gulp.series("copy:img", "refresh"));
-  gulp.watch("src/**/*.scss", gulp.series("build:css", "refresh"));
+  gulp.watch("src/**/*.html", gulp.series("html", "refresh"));
+  gulp.watch("src/**/*.{svg,jpg,png}", gulp.series("img", "html", "refresh"));
+  gulp.watch("src/**/*.scss", gulp.series("css", "refresh"));
 });
 
 gulp.task("start", gulp.series("build", "server"));

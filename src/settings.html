@@ -1,10 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>School CI Server</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-
+<div style="display:none;">
+  <include src="build/img/sprite.svg"></include>
+</div>
+<header class="header container">
+  <h1 class="header__heading heading heading--h1">School CI Server</h1>
+</header>
+<main class="main main--settings container">
+  <section class="build-settings">
+    <h3 class="build-settings__heading heading heading--h3">Settings</h3>
+    <p class="build-settings__comment">Configure repository connection and synchronization settings.</p>
+    <form class="build-settings__form form form--settings" action="/" method="post">
+      <label class="form__control-group form__control-group--required">
+        <span class="form__label">GitHub repository</span>
+        <input class="form__input" type="text" name="repository" required placeholder="user-name/repo-name">
+      </label>
+      <div class="form__control-group">
+        <label class="form__label" for="command-input">Build command</label>
+        <div class="form__input-reset-wrapper">
+          <input class="form__input" id="command-input" type="text" name="command">
+          <button class="form__btn-reset" type="button" title="Reset">
+            <svg class="icon icon--reset" width="16" height="16">
+              <use xlink:href="#icon-cross"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="form__control-group">
+        <label class="form__label" for="branch-input">Main branch</label>
+        <span class="form__input-reset-wrapper">
+          <input class="form__input" id="branch-input" type="text" name="branch">
+          <button class="form__btn-reset" type="button" title="Reset">
+            <svg class="icon icon--reset" width="16" height="16">
+              <use xlink:href="#icon-cross"></use>
+            </svg>
+          </button>
+        </span>
+      </div>
+      <label class="form__control-group form__control-group--sync-time">
+        <span class="form__label">Synchronize every</span>
+        <input class="form__input" type="test" name="sync">
+        <span class="form__input-hint">minutes</span>
+      </label>
+      <div class="form__control-group">
+        <button class="btn btn--accent" type="submit">Save</button>
+        <a class="btn" href="start-screen.html">Cancel</a>
+      </div>
+    </form>
+  </section>
+</main>
+<footer class="footer">
+  <div class="footer__container container">
+    <ul class="footer__nav">
+      <li class="footer__nav-item">
+        <a href="#">Support</a>
+      </li>
+      <li class="footer__nav-item">
+        <a href="#">Learning</a>
+      </li>
+    </ul>
+    <span class="footer__copyright">
+      © 2020 Maksim Poliakov
+    </span>
+  </div>
+</footer>
 </body>
 </html>

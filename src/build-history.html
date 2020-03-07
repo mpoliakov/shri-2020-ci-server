@@ -1,10 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>School CI Server</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-
+<div style="display:none;">
+  <include src="build/img/sprite.svg"></include>
+</div>
+<header class="header container">
+  <h1 class="visually-hidden">School CI Server</h1>
+  <h2 class="header__heading heading heading--h2">philip1967/my-aw esome-repo-with-long-long-long-repo-name</h2>
+  <a class="btn btn--small btn--with-icon" href="settings.html">
+    <svg class="btn__icon icon icon--btn icon--run-build" width="9" height="10">
+      <use xlink:href="#icon-run-build"></use>
+    </svg>
+    <span class="btn__text">Run build</span>
+  </a>
+  <a class="btn btn--small btn--icon-only" href="settings.html" title="Settings">
+    <svg class="btn__icon icon icon--btn icon--settings" width="12" height="12">
+      <use xlink:href="#icon-settings"></use>
+    </svg>
+    <span class="btn__text">Settings</span>
+  </a>
+</header>
+<main class="main main--build-history container">
+  <ul class="build-history">
+    <li>
+      <a class="build-history__item" href="build-details.html">
+        <section class="build-card build-card--status-success">
+          <svg class="build-card__status icon icon--status" width="14" height="14">
+            <use xlink:href="#icon-success"></use>
+          </svg>
+          <h3 class="build-card__issue heading">
+            <span class="build-card__issue-number">#1368</span>
+            <span class="build-card__issue-comment">add documentation for postgres scaler</span>
+          </h3>
+          <div class="build-card__commit">
+            <svg class="icon icon--commit" width="16" height="8">
+              <use xlink:href="#icon-commit"></use>
+            </svg>
+            <span class="build-card__commit-branch">master</span>
+            <span class="build-card__commit-hash">9c9f0b9</span>
+          </div>
+          <div class="build-card__author">
+            <svg class="icon icon--user" width="13" height="14">
+              <use xlink:href="#icon-user"></use>
+            </svg>
+            Philip Kirkorov
+          </div>
+          <div class="build-card__time">
+            <span class="build-card__time-start">
+              <svg class="icon icon--calendar" width="14" height="16">
+                <use xlink:href="#icon-calendar"></use>
+              </svg>
+              21 янв, 03:06
+            </span>
+            <span class="build-card__time-duration">
+              <svg class="icon icon--watch" width="14" height="16">
+                <use xlink:href="#icon-watch"></use>
+              </svg>
+              1 ч 20 мин
+            </span>
+          </div>
+        </section>
+      </a>
+    </li>
+  </ul>
+</main>
+<footer class="footer">
+  <div class="footer__container container">
+    <ul class="footer__nav">
+      <li class="footer__nav-item">
+        <a href="#">Support</a>
+      </li>
+      <li class="footer__nav-item">
+        <a href="#">Learning</a>
+      </li>
+    </ul>
+    <span class="footer__copyright">
+      © 2020 Maksim Poliakov
+    </span>
+  </div>
+</footer>
 </body>
 </html>

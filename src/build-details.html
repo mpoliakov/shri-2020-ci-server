@@ -1,10 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>School CI Server</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-
+<div style="display:none;">
+  <include src="build/img/sprite.svg"></include>
+</div>
+<header class="header container">
+  <h1 class="visually-hidden">School CI Server</h1>
+  <h2 class="header__heading heading heading--h2">philip1967/my-aw esome-repo-with-long-long-long-repo-name</h2>
+  <a class="btn btn--small btn--with-icon" href="#">
+    <svg class="btn__icon icon icon--btn icon--rebuild" width="12" height="12">
+      <use xlink:href="#icon-rebuild"></use>
+    </svg>
+    <span class="btn__text">Rebuild</span>
+  </a>
+  <a class="btn btn--small btn--with-icon btn--compact" href="settings.html" title="Settings">
+    <svg class="btn__icon icon icon--btn icon--settings" width="12" height="12">
+      <use xlink:href="#icon-settings"></use>
+    </svg>
+    <span class="btn__text">Settings</span>
+  </a>
+</header>
+<main class="main main--build-details container">
+  <section class="build-card build-card--detailed build-card--status-success">
+    <svg class="build-card__status icon icon--status" width="14" height="14">
+      <use xlink:href="#icon-success"></use>
+    </svg>
+    <h3 class="build-card__issue heading">
+      <span class="build-card__issue-number">#1368</span>
+      <span class="build-card__issue-comment">add documentation for postgres scaler</span>
+    </h3>
+    <div class="build-card__commit">
+      <svg class="icon icon--commit" width="16" height="8">
+        <use xlink:href="#icon-commit"></use>
+      </svg>
+      <span class="build-card__commit-branch">master</span>
+      <span class="build-card__commit-hash">9c9f0b9</span>
+    </div>
+    <div class="build-card__author">
+      <svg class="icon icon--user" width="13" height="14">
+        <use xlink:href="#icon-user"></use>
+      </svg>
+      Philip Kirkorov
+    </div>
+    <div class="build-card__time">
+            <span class="build-card__time-start">
+              <svg class="icon icon--calendar" width="14" height="16">
+                <use xlink:href="#icon-calendar"></use>
+              </svg>
+              21 янв, 03:06
+            </span>
+      <span class="build-card__time-duration">
+              <svg class="icon icon--watch" width="14" height="16">
+                <use xlink:href="#icon-watch"></use>
+              </svg>
+              1 ч 20 мин
+            </span>
+    </div>
+  </section>
+  <pre class="build-log">
+Hash: 828e92bb8337a0c38a13
+Version: webpack 4.41.4
+Time: 2999ms
+Built at: 03/06/2020 5:01:37 PM
+Asset      Size  Chunks             Chunk Names
+linter.js  48.5 KiB       0  [emitted]  main
+Entrypoint main = linter.js
+[0] ./src/linter-rules/linter-rule.ts 1.63 KiB {0} [built]
+[2] (webpack)/buildin/global.js 472 bytes {0} [built]
+[3] ./src/linter-configuration.ts + 10 modules 23.3 KiB {0} [built]
+| ./src/linter-configuration.ts 704 bytes [built]
+| ./src/linter-rules/linter-rules.ts 1010 bytes [built]
+| ./src/linter-rules/grid/too-much-marketing-blocks.ts 3 KiB [built]
+| ./src/linter-rules/text/several-h1.ts 2.2 KiB [built]
+| ./src/linter-rules/text/invalid-h2-position.ts 3.08 KiB [built]
+| ./src/linter-rules/text/invalid-h3-position.ts 3.08 KiB [built]
+| ./src/linter-rules/warning/text-sizes-should-be-equal.ts 2.19 KiB [built]
+| ./src/linter-rules/warning/invalid-button-size.ts 2.88 KiB [built]
+| ./src/linter-rules/warning/invalid-button-position.ts 2.44 KiB [built]
+| ./src/linter-rules/warning/invalid-placeholder-size.ts 2.48 KiB [built]
+| ./src/bem/increment-size-mod.ts 299 bytes [built]
+[4] ./src/linter-strategy.ts + 4 modules 9.72 KiB {0} [built]
+| ./src/linter-strategy.ts 3.92 KiB [built]
+| ./src/bem/bem-block.ts 1.1 KiB [built]
+| ./src/bem/bem-block-array.ts 167 bytes [built]
+| ./src/bem/json-to-bem.ts 1.58 KiB [built]
+| ./src/bem/ast-object-helper.ts 2.94 KiB [built]
+[5] multi ./src/linter.ts json-to-ast 40 bytes {0} [built]
+[6] ./src/linter.ts 221 bytes {0} [built]
++ 1 hidden module
+  </pre>
+</main>
+<footer class="footer">
+  <div class="footer__container container">
+    <ul class="footer__nav">
+      <li class="footer__nav-item">
+        <a href="#">Support</a>
+      </li>
+      <li class="footer__nav-item">
+        <a href="#">Learning</a>
+      </li>
+    </ul>
+    <span class="footer__copyright">
+      © 2020 Maksim Poliakov
+    </span>
+  </div>
+</footer>
 </body>
 </html>

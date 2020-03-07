@@ -1,22 +1,32 @@
-$desktop-width: 1024px;
+$color-accent: #fc0;
+$color-success: #00b341;
+$color-warning: #f33;
+$color-pending: #ff9a00;
 
-$color-accent: #FFCC00;
-$color-success: #00B341;
-$color-fail: #FF3333;
-$color-pending: #FF9A00;
+$text-color: #000;
+$text-color-secondary: #7f8285;
+$active-link-color: #e00000;
 
-$text-color: #000000;
-$text-color-secondary: #7F8285;
-$active-link-color: #E00000;
-
-$background-color: #F0F2F3;
-$btn-background-color: #E6E6E6;
+$bg-color: #f0f2f3;
 
 $border-width: 2px;
 $border-radius: 4px;
-$border-color: #D9D9D9;
+$border-color: #d9d9d9;
+$border-color-focus: #b3b3b3;
+
+$btn-bg-color: #e6e6e6;
+$btn-bg-color-hover: #dbdbdb;
+$btn-accent-bg-color: $color-accent;
+$btn-accent-bg-color-hover: #f2c200;
+$btn-accent-border-color-focus: #b38f00;
+
+$breakpoint: 768px;
+
+$container-max-width: 1024px;
+$container-padding-x: 16px;
+$container-padding-y: 8px;
 
 $header-height-mobile: 52px;
 $footer-height-mobile: 68px;
-$header-height-desktop: 48px;
+$header-height-desktop: 52px;
 $footer-height-desktop: 32px;
