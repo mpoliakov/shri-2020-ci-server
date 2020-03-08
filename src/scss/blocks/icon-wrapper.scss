@@ -1,0 +1,13 @@
+.icon-wrapper {
+  position: relative;
+  display: inline-block;
+  min-height: 16px;
+  padding-left: 18px;
+
+  .icon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

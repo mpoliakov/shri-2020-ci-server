@@ -22,8 +22,7 @@
   }
 
   &:focus {
-    outline: none;
-    box-shadow: inset 0px 0px 0px $border-width $border-color-focus;
+    outline-color: $border-color-focus;
   }
 
   &:disabled {
@@ -38,17 +37,20 @@
     }
 
     &:focus {
-      box-shadow: inset 0px 0px 0px $border-width $btn-accent-border-color-focus;
+      outline-color: $btn-accent-border-color-focus;
     }
   }
 
   &--small {
-    padding: 8px;
+    padding: 0 12px;
     line-height: 28px;
   }
 
   &--with-icon,
   &--icon-only {
+    min-height: 28px;
+    padding: 8px;
+
     .btn__text {
       display: none;
     }

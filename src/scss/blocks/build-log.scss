@@ -2,7 +2,13 @@
 
 .build-log {
   padding: $container-padding-y $container-padding-x;
-  margin: $container-padding-y -#{$container-padding-x};
+  margin: $container-padding-x -#{$container-padding-x};
   background-color: $bg-color;
-  overflow-x: scroll;
+  overflow-x: auto;
+}
+
+@media (min-width: $breakpoint) {
+  .build-log {
+    margin: $container-padding-x 0 0 0;
+  }
 }

@@ -4,3 +4,13 @@
 .build-history {
   @include reset-list();
 }
+
+.build-history__item {
+  margin-bottom: 8px;
+
+  a:hover {
+    .build-card {
+      box-shadow: 0 2px 8px rgba(67, 68, 69, 0.3), 0 0 1px rgba(67, 68, 69, 0.3);
+    }
+  }
+}

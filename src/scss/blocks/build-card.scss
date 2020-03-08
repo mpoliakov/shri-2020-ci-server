@@ -1,11 +1,157 @@
 @import "../includes/variables";
 
 .build-card {
+  position: relative;
+  padding: 12px 16px 12px 36px;
   font-size: 13px;
   line-height: 16px;
   color: black;
+  box-shadow: 0 1px 1px rgba(67, 68, 69, 0.3), 0 0 1px rgba(67, 68, 69, 0.3);
+  border-radius: 6px;
 
   .icon {
     opacity: 0.2;
+
+    &.build-card__status {
+      opacity: 1;
+    }
+  }
+}
+
+.build-card__main {
+  margin-bottom: 8px;
+  border-bottom: 1px solid #f0f2f3;
+}
+
+.build-card__status {
+  position: absolute;
+  left: 16px;
+  top: 12px;
+
+  .build-card--status-success & {
+    fill: $color-success;
+  }
+
+  .build-card--status-fail & {
+    fill: $color-warning;
+  }
+
+  .build-card--status-pending & {
+    fill: $color-pending;
+  }
+}
+
+.build-card__issue {
+  margin: 0 0 8px 0;
+}
+
+.build-card__issue-number {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 500;
+
+  .build-card--status-success & {
+    color: $color-success;
+  }
+
+  .build-card--status-fail & {
+    color: $color-warning;
+  }
+
+  .build-card--status-pending & {
+    color: $color-pending;
+  }
+}
+
+.build-card__issue-comment {
+  font-weight: normal;
+}
+
+.build-card__commit,
+.build-card__author {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.build-card__commit-hash {
+  color: $text-color-secondary;
+}
+
+.build-card__time {
+  color: $text-color-secondary;
+
+  .build-card__time-start {
+    margin-right: 10px;
+  }
+}
+
+@media (min-width: $breakpoint) {
+  .build-card {
+    padding-left: 56px;
+    padding-right: 24px;
+  }
+
+  .build-card__status {
+    left: 24px;
+  }
+
+  .build-card__issue-number {
+    display: inline-block;
+    font-size: 18px;
+    line-height: 20px;
+    margin-bottom: 0;
+  }
+
+  .build-card__issue-comment {
+    line-height: 20px;
+  }
+
+  .build-card__commit,
+  .build-card__author {
+    display: inline-block;
+  }
+
+  .build-card__commit {
+    margin-right: 10px;
+  }
+
+  .build-card__time {
+    color: $text-color;
+  }
+
+  .build-card--compact {
+    display: flex;
+    justify-content: space-between;
+
+    .build-card__main {
+      min-width: 0;
+      padding-right: 16px;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    .build-card__issue {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .build-card__commit,
+    .build-card__author {
+      margin-bottom: 0;
+    }
+
+    .build-card__time {
+      min-width: 120px;
+      display: flex;
+      flex-direction: column;
+      color: $text-color-secondary;
+    }
+
+    .build-card__time-start {
+      margin-bottom: 8px;
+    }
   }
 }

@@ -61,37 +61,49 @@
   }
 }
 
-.form__control-group {
-  &--required {
-    .form__label {
-      position: relative;
+.form__control-group--required {
+  .form__label {
+    position: relative;
 
-      &::after {
-        position: absolute;
-        top: 0;
-        right: -8px;
-        display: block;
-        content: "*";
-        color: $color-warning;
-      }
+    &::after {
+      position: absolute;
+      top: 0;
+      right: -8px;
+      display: block;
+      content: "*";
+      color: $color-warning;
     }
   }
+}
 
-  &--sync-time {
-    display: flex;
-    align-items: center;
+.form__control-group--sync-time {
+  display: flex;
+  align-items: center;
 
-    .form__label {
-      margin: 0;
-    }
+  .form__label {
+    margin: 0;
+  }
 
-    .form__input {
-      width: 52px;
-      margin: 0 8px;
-    }
+  .form__input {
+    width: 65px;
+    margin: 0 8px;
+    text-align: right;
+  }
 
-    .form__input-hint {
-      color: $text-color-secondary;
+  .form__input-hint {
+    color: $text-color-secondary;
+  }
+}
+
+@media (min-width: $breakpoint) {
+  .form__control-group {
+    .btn {
+      width: auto;
+      margin: 0 8px 0 0;
+
+      &:last-child {
+        margin-left: 0;
+      }
     }
   }
 }
