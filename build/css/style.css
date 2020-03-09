@@ -299,8 +299,6 @@ input[type="radio"].visually-hidden {
 .form__input-reset-wrapper {
   position: relative;
   display: block; }
-  .form__input-reset-wrapper .form__input {
-    padding-right: 28px; }
   .form__input-reset-wrapper .form__btn-reset {
     position: absolute;
     right: 12px;
@@ -313,6 +311,10 @@ input[type="radio"].visually-hidden {
     outline: none;
     cursor: pointer;
     transform: translateY(-50%); }
+  .form__input-reset-wrapper .form__input {
+    padding-right: 28px; }
+    .form__input-reset-wrapper .form__input:placeholder-shown ~ .form__btn-reset {
+      display: none; }
 
 .form__control-group--required .form__label {
   position: relative; }
