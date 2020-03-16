@@ -1,5 +1,5 @@
 {
-  "name": "shri-2020-homework-1",
+  "name": "shri-2020-ci-server",
   "version": "1.0.0",
   "description": "Адаптивная вёрстка",
   "main": "index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mpoliakov/shri-2020-homework-1.git"
+    "url": "git+https://github.com/mpoliakov/shri-2020-ci-server.git"
   },
   "author": "Максим Поляков",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mpoliakov/shri-2020-homework-1/issues"
+    "url": "https://github.com/mpoliakov/shri-2020-ci-server/issues"
   },
-  "homepage": "https://github.com/mpoliakov/shri-2020-homework-1#readme",
+  "homepage": "https://github.com/mpoliakov/shri-2020-ci-server#readme",
   "devDependencies": {
     "autoprefixer": "9.7.4",
     "browser-sync": "2.26.7",
@@ -33,5 +33,6 @@
     "posthtml-include": "1.4.0",
     "stylelint": "13.2.0",
     "stylelint-config-standard": "20.0.0"
-  }
+  },
+  "dependencies": {}
 }
