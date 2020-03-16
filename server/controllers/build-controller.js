@@ -23,3 +23,31 @@ exports.getBuildLog = (req, res) => {
     res.send(data);
   });
 };
+
+exports.addBuild = (req, res) => {
+  // Add build to queue (Backend API: POST /build/request) --> set build.status
+  // Build module --- for now should be mocked (setTimeout)
+  // Start build (Backend API: POST /build/start) --> set build.status, build.start
+  // Build module --- for now should be mocked (setTimeout)
+  // Finish build (Backend API: POST /build/finish) -- set build.status, build.duration
+
+  const hash = req.params.commitHash;
+
+  backendAPI.getConf()
+    .then((settings) => new GitHelper(settings.repoName).getCommit(hash))
+    .then((commit) => {
+      console.log(commit);
+      return backendAPI.requestBuild({
+        commitMessage: commit.message,
+        commitHash: commit.hash,
+        branchName: 'master', //commit.refs, --- there is a problem to find branch by commit hash, it can be in several branches at the same time
+        authorName: commit.author_name
+      });
+    })
+    .then(() => {
+      res.status(200).send('Success');
+    })
+    .catch((err) => {
+      res.status(500).send(err.toString());
+    });
+}

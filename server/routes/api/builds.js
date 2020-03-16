@@ -10,13 +10,6 @@ GET  /api/builds/:buildId/logs - получение логов билда (сп�
 router.get('/builds', buildController.getList);
 router.get('/builds/:buildId', buildController.getBuildDetails);
 router.get('/builds/:buildId/logs', buildController.getBuildLog);
-router.post('/builds/:commitHash', (req, res) => {
-  // Add build to queue (Backend API: POST /build/request) --> set build.status
-  // Build module --- for now should be mocked (setTimeout)
-  // Start build (Backend API: POST /build/start) --> set build.status, build.start
-  // Build module --- for now should be mocked (setTimeout)
-  // Finish build (Backend API: POST /build/finish) -- set build.status, build.duration
-  res.text(req.params.commitHash);
-});
+router.post('/builds/:commitHash', buildController.addBuild);
 
 module.exports = router;

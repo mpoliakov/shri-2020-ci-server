@@ -23,24 +23,14 @@ exports.save = (req, res) => {
   const gitHelper = new GitHelper(settings.repoName);
 
   backendAPI.saveConf(settings)
-    .then(() => {
-      // TODO: check if folder exists and remove it
-      return gitHelper.clone();
-    })
-    .then(() => {
-      return gitHelper.getLastCommit(settings.mainBranch);
-    })
-    .then((commit) => {
-      return commit;
-    })
-    .then((commit) => {
-      return backendAPI.requestBuild({
-        commitMessage: commit.message,
-        commitHash: commit.hash,
-        branchName: settings.mainBranch, // or use commit.refs = 'HEAD -> master, origin/master, origin/HEAD'
-        authorName: commit.author_name
-      });
-    })
+    .then(() => gitHelper.clone())
+    .then(() => gitHelper.getLastCommit(settings.mainBranch))
+    .then((commit) => backendAPI.requestBuild({
+      commitMessage: commit.message,
+      commitHash: commit.hash,
+      branchName: settings.mainBranch, // or use commit.refs = 'HEAD -> master, origin/master, origin/HEAD'
+      authorName: commit.author_name
+    }))
     .then(() => {
       res.status(200).send('Success');
     })

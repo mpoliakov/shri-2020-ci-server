@@ -37,6 +37,14 @@ class BackendAPI {
   }
 
   saveConf(settings) {
+    /*
+    settings: {
+      "repoName": "string",
+      "buildCommand": "string",
+      "mainBranch": "string",
+      "period": 0
+    }
+     */
     return this._api.post('/conf', settings);
   }
 
@@ -66,19 +74,41 @@ class BackendAPI {
   }
 
   requestBuild(request) {
+    /*
+    request: {
+      "commitMessage": "string",
+      "commitHash": "string",
+      "branchName": "string",
+      "authorName": "string"
+    }
+     */
     return this._api.post('/build/request', request);
   }
 
-  startBuild() {
-    // will be executed by Build Module
+  startBuild(startInfo) {
+    /*
+    startInfo: {
+      "buildId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "dateTime": "2020-03-17T05:12:37.344Z"
+    }
+     */
+    return this._api.post('/build/start', startInfo);
   }
 
-  finishBuild() {
-    // will be executed by Build Module
+  finishBuild(finishInfo) {
+    /*
+    finishInfo: {
+      "buildId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "duration": 0,
+      "success": true,
+      "buildLog": "string"
+    }
+     */
+    return this._api.post('/build/finish', finishInfo);
   }
 
-  cancelBuild() {
-    // will be executed by Build Module
+  cancelBuild(buildId) {
+    return this._api.post('build/cancel', buildId);
   }
 }
 
