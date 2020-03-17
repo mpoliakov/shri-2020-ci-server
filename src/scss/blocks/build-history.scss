@@ -14,3 +14,13 @@
     }
   }
 }
+
+.build-history__show-more-btn {
+  width: 100%;
+}
+
+@media (min-width: $breakpoint) {
+  .build-history__show-more-btn {
+    width: auto;
+  }
+}

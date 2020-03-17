@@ -6,8 +6,8 @@
   vertical-align: middle;
   padding: 0 20px;
   color: #000;
-  font-size: 13px;
-  line-height: 36px;
+  font-size: $font-size-xs;
+  line-height: $line-height-xxl;
   font-weight: normal;
   text-align: center;
   background-color: $btn-bg-color;
@@ -43,7 +43,7 @@
 
   &--small {
     padding: 0 12px;
-    line-height: 28px;
+    line-height: $line-height-l;
   }
 
   &--with-icon,

@@ -171,7 +171,7 @@ input[type="radio"].visually-hidden {
 
 .header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   min-height: 52px;
   padding-top: 12px;
   padding-bottom: 12px; }
@@ -191,9 +191,7 @@ input[type="radio"].visually-hidden {
 
 .footer {
   color: #7f8285;
-  background-color: #f0f2f3;
-  font-size: 13px;
-  line-height: 18px; }
+  background-color: #f0f2f3; }
 
 .footer__container {
   display: flex;
@@ -254,12 +252,20 @@ input[type="radio"].visually-hidden {
 .placeholder__text {
   margin: 32px auto 24px; }
 
+.build-settings {
+  max-width: 475px;
+  margin: 0 auto; }
+
 .build-settings__heading {
   margin: 0 0 8px 0; }
 
 .build-settings__comment {
   margin: 0 0 14px 0;
   color: #7f8285; }
+
+@media (min-width: 768px) {
+  .build-settings {
+    margin: initial; } }
 
 .form__control-group {
   display: block;
@@ -279,7 +285,7 @@ input[type="radio"].visually-hidden {
   box-sizing: border-box;
   width: 100%;
   padding: 10px 12px;
-  line-height: 15px;
+  line-height: 16px;
   border: 2px solid #d9d9d9;
   border-radius: 4px; }
   .form__input:focus {
@@ -457,6 +463,13 @@ input[type="radio"].visually-hidden {
   margin-bottom: 8px; }
   .build-history__item a:hover .build-card {
     box-shadow: 0 2px 8px rgba(67, 68, 69, 0.3), 0 0 1px rgba(67, 68, 69, 0.3); }
+
+.build-history__show-more-btn {
+  width: 100%; }
+
+@media (min-width: 768px) {
+  .build-history__show-more-btn {
+    width: auto; } }
 
 .build-log {
   padding: 8px 16px;

@@ -3,8 +3,8 @@
 .build-card {
   position: relative;
   padding: 12px 16px 12px 36px;
-  font-size: 13px;
-  line-height: 16px;
+  font-size: $font-size-xs;
+  line-height: $line-height-xxs;
   color: black;
   box-shadow: 0 1px 1px rgba(67, 68, 69, 0.3), 0 0 1px rgba(67, 68, 69, 0.3);
   border-radius: 6px;
@@ -48,8 +48,8 @@
 .build-card__issue-number {
   display: block;
   margin-bottom: 8px;
-  font-size: 16px;
-  line-height: 16px;
+  font-size: $font-size-m;
+  line-height: $line-height-xxs;
   font-weight: 500;
 
   .build-card--status-success & {
@@ -99,13 +99,13 @@
 
   .build-card__issue-number {
     display: inline-block;
-    font-size: 18px;
-    line-height: 20px;
+    font-size: $font-size-l;
+    line-height: $line-height-s;
     margin-bottom: 0;
   }
 
   .build-card__issue-comment {
-    line-height: 20px;
+    line-height: $line-height-s;
   }
 
   .build-card__commit,
