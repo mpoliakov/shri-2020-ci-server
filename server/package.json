@@ -1,0 +1,26 @@
+{
+  "name": "shri-2020-ci-server",
+  "version": "1.0.0",
+  "description": "Сервер сборки",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mpoliakov/shri-2020-ci-server.git"
+  },
+  "author": "Максим Поляков",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mpoliakov/shri-2020-ci-server/issues"
+  },
+  "homepage": "https://github.com/mpoliakov/shri-2020-ci-server#readme",
+  "dependencies": {
+    "axios": "0.19.2",
+    "dotenv": "8.2.0",
+    "express": "4.17.1",
+    "simple-git": "1.132.0",
+    "swagger-ui-express": "4.1.3"
+  }
+}

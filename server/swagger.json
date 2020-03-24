@@ -1,0 +1,326 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "School CI API",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "/api"
+    }
+  ],
+  "paths": {
+    "/settings": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettingsModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettingsModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettingsModel"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SettingsInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SettingsInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SettingsInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/builds": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuildModelArray"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuildModelArray"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuildModelArray"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/builds/{buildId}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "buildId",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuildModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuildModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuildModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/builds/{buildId}/logs": {
+      "get": {
+        "parameters": [
+          {
+            "name": "buildId",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/builds/{commitHash}": {
+      "post": {
+        "parameters": [
+          {
+            "name": "commitHash",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuildModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuildModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuildModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SettingsModel": {
+        "required": [
+          "buildCommand",
+          "id",
+          "mainBranch",
+          "period",
+          "repoName"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "repoName": {
+            "type": "string"
+          },
+          "buildCommand": {
+            "type": "string"
+          },
+          "mainBranch": {
+            "type": "string"
+          },
+          "period": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SettingsInput": {
+        "required": [
+          "buildCommand",
+          "mainBranch",
+          "period",
+          "repoName"
+        ],
+        "type": "object",
+        "properties": {
+          "repoName": {
+            "type": "string"
+          },
+          "buildCommand": {
+            "type": "string"
+          },
+          "mainBranch": {
+            "type": "string"
+          },
+          "period": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BuildModel": {
+        "required": [
+          "authorName",
+          "branchName",
+          "buildNumber",
+          "commitHash",
+          "commitMessage",
+          "configurationId",
+          "id",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "configurationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "buildNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "commitMessage": {
+            "type": "string"
+          },
+          "commitHash": {
+            "type": "string"
+          },
+          "branchName": {
+            "type": "string"
+          },
+          "authorName": {
+            "type": "string"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BuildStatus"
+              }
+            ]
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BuildStatus": {
+        "enum": [
+          "Waiting",
+          "InProgress",
+          "Success",
+          "Fail",
+          "Canceled"
+        ],
+        "type": "string"
+      },
+      "BuildModelArray": {
+        "type": "object",
+        "properties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/BuildModel"
+          },
+          "nullable": true
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
