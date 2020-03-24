@@ -6,10 +6,13 @@
 *.pdf
 *.psd
 *.sublime*
-node_modules/
-*/node_modules/
-*/.env
-*/repo/
 npm-debug.*
 Thumbs.db
+node_modules/
+*/node_modules/
+
+# server
+.env
+src/server/repo/
+
 
