@@ -75,7 +75,7 @@
         <section class="build-card build-card--compact build-card--status-fail">
           <div class="build-card__main">
             <svg class="build-card__status icon icon--status" width="14" height="14">
-              <use xlink:href="#icon-success"></use>
+              <use xlink:href="#icon-cross"></use>
             </svg>
             <h3 class="build-card__issue heading">
               <span class="build-card__issue-number">#1367</span>
@@ -114,10 +114,10 @@
     </li>
     <li class="build-history__item">
       <a class="build-history__item" href="build-details.html">
-        <section class="build-card build-card--compact build-card--status-success">
+        <section class="build-card build-card--compact build-card--status-waiting">
           <div class="build-card__main">
             <svg class="build-card__status icon icon--status" width="14" height="14">
-              <use xlink:href="#icon-success"></use>
+              <use xlink:href="#icon-waiting"></use>
             </svg>
             <h3 class="build-card__issue heading">
               <span class="build-card__issue-number">#1366</span>
@@ -156,10 +156,10 @@
     </li>
     <li class="build-history__item">
       <a class="build-history__item" href="build-details.html">
-        <section class="build-card build-card--compact build-card--status-pending">
+        <section class="build-card build-card--compact build-card--status-in-progress">
           <div class="build-card__main">
             <svg class="build-card__status icon icon--status" width="14" height="14">
-              <use xlink:href="#icon-pending"></use>
+              <use xlink:href="#icon-waiting"></use>
             </svg>
             <h3 class="build-card__issue heading">
               <span class="build-card__issue-number">#1365</span>
@@ -198,10 +198,10 @@
     </li>
     <li class="build-history__item">
       <a class="build-history__item" href="build-details.html">
-        <section class="build-card build-card--compact build-card--status-success">
+        <section class="build-card build-card--compact build-card--status-canceled">
           <div class="build-card__main">
             <svg class="build-card__status icon icon--status" width="14" height="14">
-              <use xlink:href="#icon-success"></use>
+              <use xlink:href="#icon-cross"></use>
             </svg>
             <h3 class="build-card__issue heading">
               <span class="build-card__issue-number">#1364</span>
@@ -240,10 +240,10 @@
     </li>
     <li class="build-history__item">
       <a class="build-history__item" href="build-details.html">
-        <section class="build-card build-card--compact build-card--status-fail">
+        <section class="build-card build-card--compact build-card--status-success">
           <div class="build-card__main">
             <svg class="build-card__status icon icon--status" width="14" height="14">
-              <use xlink:href="#icon-cross"></use>
+              <use xlink:href="#icon-success"></use>
             </svg>
             <h3 class="build-card__issue heading">
               <span class="build-card__issue-number">#1367</span>
@@ -424,5 +424,27 @@
     </span>
   </div>
 </footer>
+<div class="modal modal--closed">
+  <div class="modal-dialog">
+    <h3 class="modal-dialog__heading heading heading--h3">New build</h3>
+    <p class="modal-dialog__text">Enter the commit hash which you want to build.</p>
+    <form class="modal-dialog__form form" action="/" method="post">
+      <label class="form__control-group form__control-group--required">
+        <div class="form__input-reset-wrapper">
+          <input class="form__input" type="text" name="hash" required placeholder="Commit hash">
+          <button class="form__btn-reset" type="button" title="Reset">
+            <svg class="icon icon--reset" width="16" height="16">
+              <use xlink:href="#icon-cross"></use>
+            </svg>
+          </button>
+        </div>
+      </label>
+      <div class="form__control-group">
+        <button class="btn btn--accent" type="submit">Run build</button>
+        <a class="btn" href="start-screen.html">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
 </body>
 </html>

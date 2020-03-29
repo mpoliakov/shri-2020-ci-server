@@ -259,7 +259,7 @@ input[type="radio"].visually-hidden {
 .build-settings__heading {
   margin: 0 0 8px 0; }
 
-.build-settings__comment {
+.build-settings__text {
   margin: 0 0 14px 0;
   color: #7f8285; }
 
@@ -271,6 +271,8 @@ input[type="radio"].visually-hidden {
   display: block;
   width: 100%;
   margin-bottom: 18px; }
+  .form__control-group:last-child {
+    margin-bottom: 0; }
   .form__control-group .btn {
     width: 100%;
     margin-bottom: 12px; }
@@ -376,8 +378,11 @@ input[type="radio"].visually-hidden {
     fill: #00b341; }
   .build-card--status-fail .build-card__status {
     fill: #f33; }
-  .build-card--status-pending .build-card__status {
+  .build-card--status-in-progress .build-card__status {
     fill: #ff9a00; }
+  .build-card--status-waiting .build-card__status,
+  .build-card--status-canceled .build-card__status {
+    fill: #e6e6e6; }
 
 .build-card__issue {
   margin: 0 0 8px 0; }
@@ -480,3 +485,38 @@ input[type="radio"].visually-hidden {
 @media (min-width: 768px) {
   .build-log {
     margin: 16px 0 0 0; } }
+
+.modal:after {
+  display: block;
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background-color: #000;
+  opacity: 0.3; }
+
+.modal--closed {
+  display: none; }
+
+.modal-dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  width: 80%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 6px 16px rgba(67, 68, 69, 0.3), 0px 0px 1px rgba(67, 68, 69, 0.3); }
+
+.modal-dialog__heading,
+.modal-dialog__text {
+  margin: 0 0 12px 0; }
+
+@media (min-width: 768px) {
+  .modal-dialog {
+    min-width: 485px; } }

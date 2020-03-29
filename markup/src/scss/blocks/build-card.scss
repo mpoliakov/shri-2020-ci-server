@@ -36,8 +36,13 @@
     fill: $color-warning;
   }
 
-  .build-card--status-pending & {
+  .build-card--status-in-progress & {
     fill: $color-pending;
+  }
+
+  .build-card--status-waiting &,
+  .build-card--status-canceled & {
+    fill: $btn-bg-color;
   }
 }
 
