@@ -1,40 +1,58 @@
-const dotenv = require('dotenv');
-const BackendAPI = require('./backend/backend-api');
-const GitHelper = require('./git/git-helper');
+const GitHelper = require('../git/git-helper');
+const backendAPI = require('../backend/backend-api');
 
-// TODO: Do not init BackendAPI and GitHelper in each controller - should be something like factory
-dotenv.config();
-const backendAPI = new BackendAPI(process.env.AUTH_TOKEN);
+exports.get = async (req, res) => {
+  let data = null;
 
-exports.get = (req, res) => {
-  // Read settings (Backend API: GET /conf)
-  backendAPI.getConf().then((data) => {
-    res.json(data);
-  });
+  try {
+    data = await backendAPI.getSettings();
+  }
+  catch (err) {
+    console.error(err.response.data);
+    return res.status(err.response.data.status).json(err.response.data);
+  }
+
+  return res.json(data.data);
 };
 
-exports.save = (req, res) => {
-  // 1. Save settings (Backend API: POST /conf). If there is already saved settings, should be edited (or deleted and created new?)
-  // 2. Clone git repository
-  // 3. Get last commit
-  // 4. Request build (Backend API: POST /build/request)
-
+// 1. Save settings (Backend API: POST /conf). If there is already saved settings, should be edited (or deleted and created new?)
+// 2. Clone git repository
+// 3. Get last commit
+// 4. Request build (Backend API: POST /build/request)
+exports.save = async (req, res) => {
   const settings = req.body;
-  const gitHelper = new GitHelper(settings.repoName);
 
-  backendAPI.saveConf(settings)
-    .then(() => gitHelper.clone())
-    .then(() => gitHelper.getLastCommit(settings.mainBranch))
-    .then((commit) => backendAPI.requestBuild({
-      commitMessage: commit.message,
-      commitHash: commit.hash,
-      branchName: settings.mainBranch, // or use commit.refs = 'HEAD -> master, origin/master, origin/HEAD'
-      authorName: commit.author_name
-    }))
-    .then(() => {
-      res.status(200).send('Success');
-    })
-    .catch((err) => {
-      res.status(500).send(err.toString());
-    });
+  const requestBody = {
+    repoName: settings.repoName,
+    buildCommand: settings.buildCommand,
+    mainBranch: settings.mainBranch ? settings.mainBranch : `master`,
+    period: isNaN(parseInt(settings.period)) ? 0 : parseInt(settings.period)
+  };
+
+  try {
+    await backendAPI.saveSettings(requestBody);
+
+    // const gitHelper = new GitHelper(settings.repoName);
+    /*backendAPI.saveConf(settings)
+      .then(() => gitHelper.clone())
+      .then(() => gitHelper.getLastCommit(settings.mainBranch))
+      .then((commit) => backendAPI.requestBuild({
+        commitMessage: commit.message,
+        commitHash: commit.hash,
+        branchName: settings.mainBranch, // or use commit.refs = 'HEAD -> master, origin/master, origin/HEAD'
+        authorName: commit.author_name
+      }))
+      .then(() => {
+        res.status(200).send('Success');
+      })
+      .catch((err) => {
+        res.status(500).send(err.toString());
+      });*/
+  }
+  catch (err) {
+    console.error(err.response.data);
+    return res.status(err.response.data.status).json(err.response.data);
+  }
+
+  return res.json(requestBody);
 };

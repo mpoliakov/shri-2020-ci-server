@@ -1,7 +1,0 @@
-{
-  "id": "9b6d8d4e-f951-43bb-acd9-a0792a911ce6",
-  "repoName": "mpoliakov/shri-2020-task-1",
-  "buildCommand": "npm i && npm run build",
-  "mainBranch": "master",
-  "period": 5
-}

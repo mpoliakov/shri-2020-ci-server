@@ -1,10 +1,11 @@
+const express = require('express');
 const settingsController = require('../../controllers/settings-controller');
-const router = require('express').Router();
 
+const router = express.Router();
 /*
-GET /api/settings — получение сохраненных настроек
-POST /api/settings - cохранение настроек
- */
+GET /api/settings — настройки
+POST /api/settings - сохранить настройки
+*/
 router.route('/settings')
   .get(settingsController.get)
   .post(settingsController.save);

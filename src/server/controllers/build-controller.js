@@ -1,30 +1,53 @@
-const dotenv = require('dotenv');
-const BackendAPI = require('./backend/backend-api');
-const GitHelper = require('./git/git-helper');
+const GitHelper = require('../git/git-helper');
+const backendAPI = require('../backend/backend-api');
+const buildService = require('../builds/build-service');
+const Utils = require('../utils');
 
-// TODO: Do not init BackendAPI and GitHelper in each controller - should be something like factory
-dotenv.config();
-const backendAPI = new BackendAPI(process.env.AUTH_TOKEN);
+exports.getList = async (req, res) => {
+  let data = null;
 
-exports.getList = (req, res) => {
-  backendAPI.getBuilds().then((data) => {
-    res.json(data);
-  });
+  try {
+    data = await backendAPI.getBuildList();
+  }
+  catch (err) {
+    console.error(err.response.data);
+    return res.status(err.response.data.status).json(err.response.data);
+  }
+
+  return res.json(data.data);
 };
 
-exports.getBuildDetails = (req, res) => {
-  backendAPI.getBuildDetails(req.params.buildId).then((data) => {
-    res.json(data);
-  });
+exports.getDetails = async (req, res) => {
+  const buildId = req.params.buildId;
+  let data = null;
+
+  try {
+    data = await backendAPI.getBuild(buildId);
+  }
+  catch (err) {
+    console.error(err.response.data);
+    return res.status(err.response.data.status).json(err.response.data);
+  }
+
+  return res.json(data.data);
 };
 
-exports.getBuildLog = (req, res) => {
-  backendAPI.getBuildLog(req.params.buildId).then((data) => {
-    res.send(data);
-  });
+exports.getLog = async (req, res) => {
+  const buildId = req.params.buildId;
+
+  try {
+    await Utils.delay(500); // TODO: remove
+    return res.send(buildService.getLog(buildId));
+  }
+  catch (err) {
+    console.error(err.response.data);
+    return res.status(err.response.data.status).json(err.response.data);
+  }
+
+  return res.end();
 };
 
-exports.addBuild = (req, res) => {
+exports.request = (req, res) => {
   // Add build to queue (Backend API: POST /build/request) --> set build.status
   // Build module --- for now should be mocked (setTimeout)
   // Start build (Backend API: POST /build/start) --> set build.status, build.start
@@ -33,7 +56,7 @@ exports.addBuild = (req, res) => {
 
   const hash = req.params.commitHash;
 
-  backendAPI.getConf()
+  backendAPI.getSettings()
     .then((settings) => new GitHelper(settings.repoName).getCommit(hash))
     .then((commit) => {
       console.log(commit);
@@ -50,4 +73,4 @@ exports.addBuild = (req, res) => {
     .catch((err) => {
       res.status(500).send(err.toString());
     });
-}
+};

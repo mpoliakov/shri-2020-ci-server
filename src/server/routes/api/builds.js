@@ -1,15 +1,17 @@
+const express = require('express');
+const ApiRoutes = require('../../const').ApiRoutes;
 const buildController = require('../../controllers/build-controller');
-const router = require('express').Router();
 
+const router = express.Router();
 /*
-GET  /api/builds - получение списка сборок
-POST /api/builds/:commitHash - добавление сборки в очередь
-GET  /api/builds/:buildId - получение информации о конкретной сборке
-GET  /api/builds/:buildId/logs - получение логов билда (сплошной текст)
+GET  /api/builds - список билдов
+POST /api/builds/:commitHash - добавление билда в очередь
+GET  /api/builds/:buildId - информация о конкретном билде
+GET  /api/builds/:buildId/logs - лог билда
  */
-router.get('/builds', buildController.getList);
-router.get('/builds/:buildId', buildController.getBuildDetails);
-router.get('/builds/:buildId/logs', buildController.getBuildLog);
-router.post('/builds/:commitHash', buildController.addBuild);
+router.get(ApiRoutes.BUILD_LIST, buildController.getList);
+router.get(ApiRoutes.BUILD_DETAILS, buildController.getDetails);
+router.get(ApiRoutes.BUILD_LOG, buildController.getLog);
+router.post(ApiRoutes.BUILD_REQUEST, buildController.request);
 
 module.exports = router;
