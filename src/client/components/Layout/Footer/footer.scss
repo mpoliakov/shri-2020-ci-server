@@ -1,0 +1,51 @@
+@import "../../App/common-styles/variables";
+@import "../../App/common-styles/mixins";
+
+.footer {
+  color: $text-color-secondary;
+  background-color: $bg-color;
+}
+
+.footer__container {
+  display: flex;
+  flex-direction: column;
+  min-height: $footer-height-mobile;
+  box-sizing: border-box;
+}
+
+.footer__container.container {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.footer__nav {
+  @include reset-list();
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.footer__nav-item {
+  margin-right: 12px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+@media (min-width: $breakpoint) {
+  .footer__container {
+    flex-direction: row;
+    align-items: center;
+    min-height: $footer-height-desktop;
+  }
+
+  .footer__container.container {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .footer__nav {
+    margin-bottom: 0;
+    margin-right: auto;
+  }
+}

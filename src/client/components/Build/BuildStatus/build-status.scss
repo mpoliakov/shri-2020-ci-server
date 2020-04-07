@@ -1,0 +1,30 @@
+@import '../../App/common-styles/variables';
+
+.build-status {
+  width: 14px;
+  height: 14px;
+
+  &--success {
+    fill: $color-success;
+  }
+
+  &--fail {
+    fill: $color-warning;
+  }
+
+  &--inprogress {
+    fill: $color-pending;
+  }
+
+  &--waiting,
+  &--canceled {
+    fill: $btn-bg-color;
+  }
+}
+
+@media (min-width: $breakpoint) {
+  .build-status {
+    width: 21px;
+    height: 21px;
+  }
+}

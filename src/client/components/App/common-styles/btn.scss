@@ -1,0 +1,92 @@
+@import "variables";
+
+.btn {
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: middle;
+  padding: 0 20px;
+  color: #000;
+  font-size: $font-size-xs;
+  line-height: $line-height-xxl;
+  font-weight: normal;
+  text-align: center;
+  background-color: $btn-bg-color;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+
+  &:hover {
+    color: #000;
+    background-color: $btn-bg-color-hover;
+    transition: background-color 0.3s;
+  }
+
+  &:focus {
+    outline-color: $border-color-focus;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  &--accent {
+    background-color: $color-accent;
+
+    &:hover {
+      background-color: $btn-accent-bg-color-hover;
+    }
+
+    &:focus {
+      outline-color: $btn-accent-border-color-focus;
+    }
+  }
+
+  &--small {
+    padding: 0 12px;
+    line-height: $line-height-l;
+  }
+
+  &--with-icon,
+  &--icon-only {
+    min-height: 28px;
+    padding: 8px;
+
+    .btn__text {
+      display: none;
+    }
+  }
+
+  .icon {
+    display: block;
+    width: 12px;
+    height: 12px;
+    fill: #111;
+  }
+}
+
+@media (min-width: $breakpoint) {
+  .btn--with-icon {
+    padding: 0 20px 0 38px;
+    position: relative;
+
+    .btn__icon {
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      transform: translateY(-50%);
+    }
+
+    .btn__text {
+      display: inline;
+      white-space: nowrap;
+    }
+
+    &.btn--small {
+      padding: 0 8px 0 26px;
+
+      .btn__icon {
+        left: 8px;
+      }
+    }
+  }
+}

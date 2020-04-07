@@ -1,0 +1,23 @@
+@import "../../App/common-styles/variables";
+
+.main {
+  min-height: calc(100vh - #{$header-height-mobile} - #{$footer-height-mobile});
+  padding-top: 8px;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+
+  &--start-screen {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.main__placeholder {
+  align-self: center;
+}
+
+@media (min-width: $breakpoint) {
+  .main {
+    min-height: calc(100vh - #{$header-height-desktop} - #{$footer-height-desktop});
+  }
+}

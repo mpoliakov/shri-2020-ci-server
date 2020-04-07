@@ -1,0 +1,21 @@
+@import "../../App/common-styles/variables";
+
+.build-settings {
+  max-width: 475px;
+  margin: 0 auto;
+}
+
+.build-settings__heading {
+  margin: 0 0 8px 0;
+}
+
+.build-settings__text {
+  margin: 0 0 14px 0;
+  color: $text-color-secondary;
+}
+
+@media (min-width: $breakpoint) {
+  .build-settings {
+    margin: initial;
+  }
+}

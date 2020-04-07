@@ -1,0 +1,28 @@
+@import "../../App/common-styles/variables";
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  min-height: $header-height-mobile;
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  .btn {
+    margin-left: 8px;
+  }
+}
+
+.header.container {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.header__heading {
+  margin: 0 auto 0 0;
+}
+
+@media (min-width: $breakpoint) {
+  .header {
+    min-height: $header-height-desktop;
+  }
+}
