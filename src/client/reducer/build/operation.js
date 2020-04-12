@@ -1,21 +1,41 @@
-import {delay} from 'Core/utils';
 import {ActionCreator} from 'Reducer/build/reducer';
-
-import mockedBuilds from '../../mock/builds';
-import mockedLog from '../../mock/log';
+import {getBuilds} from 'Reducer/builds/selectors';
 
 const Operation = {
-  loadBuild: (buildNumber) => (dispatch, getState, api) => {
-    const mockedBuild = mockedBuilds.find((build) => build.buildNumber === buildNumber);
-    return delay(250).then(() => dispatch(ActionCreator.setBuild(mockedBuild)));
-    // return api.get(`/builds/${buildId}`).then((res) => dispatch(ActionCreator.setBuild(res.data)));
+  loadBuild: (buildNumber) => async (dispatch, getState, api) => {
+    let builds = getBuilds(getState());
+    let build = builds.find((i) => i.buildNumber === buildNumber);
+
+    if (!build) {
+      const buildsRes = await api.get(`/builds`);
+      builds = buildsRes.data;
+      build = builds.find((i) => i.buildNumber === buildNumber);
+    }
+
+    const buildRes = await api.get(`/builds/${build.id}`);
+    build = buildRes.data;
+
+    return dispatch(ActionCreator.setBuild(build));
   },
-  loadLog: (buildNumber) => (dispatch, getState, api) => {
-    return delay(500).then(() => dispatch(ActionCreator.setLog(mockedLog)));
-    // return api.get(`/builds/${buildId}/logs`).then((res) => dispatch(ActionCreator.setLog(res.data)));
+  loadLog: (buildNumber) => async (dispatch, getState, api) => {
+    let builds = getBuilds(getState());
+    let build = builds.find((i) => i.buildNumber === buildNumber);
+
+    if (!build) {
+      const buildsRes = await api.get(`/builds`);
+      builds = buildsRes.data;
+      build = builds.find((i) => i.buildNumber === buildNumber);
+    }
+
+    const logRes = await api.get(`/builds/${build.id}/logs`);
+
+    return dispatch(ActionCreator.setLog(logRes.data));
   },
-  addBuild: (commitHash) => (dispatch, getState, api) => {
-    return api.post(`/builds`, {commitHash}).then((res) => dispatch(ActionCreator.setBuild(res.data)));
+  addBuild: (commitHash) => async (dispatch, getState, api) => {
+    let build = await api.post(`/builds`, commitHash);
+    build = await api.get(`/builds/${build.data.id}`);
+    dispatch(ActionCreator.setBuild(build.data));
+    return Promise.resolve(build.data);
   },
 };
 

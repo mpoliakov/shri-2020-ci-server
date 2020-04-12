@@ -27,15 +27,17 @@ class FormRunBuild extends React.PureComponent {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  handleSubmit: (evt) => {
+  handleSubmit: async (evt) => {
     evt.preventDefault();
 
-    dispatch(BuildOperation.addBuild({
-      commitHash: evt.target.commitHash.value,
-    }))
-      .then((build) => ownProps.history.push(AppRoutes.BUILD + `/` + build.buildNumber));
+    try {
+      const build = await dispatch(BuildOperation.addBuild({
+        commitHash: evt.target.commitHash.value,
+      }));
 
-    ownProps.history.push(AppRoutes.BUILD + `/1368`);
+      ownProps.history.push(AppRoutes.BUILD + `/` + build.buildNumber);
+    } catch {
+    }
   }
 });
 

@@ -8,7 +8,7 @@ class BackendAPI {
   constructor(authToken) {
     this._api = axios.create({
       baseURL: 'https://hw.shri.yandex/api/',
-      timeout: 5000,
+      timeout: 10000,
       headers: {
         Authorization: 'Bearer ' + authToken
       },
@@ -18,103 +18,80 @@ class BackendAPI {
     });
 
     /*
-    const onSuccess = (response) => {
-      return response;
-    };
-
-    const onFail = (error) => {
-      throw error;
-    }
-
+    const onSuccess = (response) => {};
+    const onFail = (error) => {};
     this._api.interceptors.response.use(onSuccess, onFail);
     */
   }
 
-  getSettings() {
-    return this._api.get(BackendApiRoutes.CONF)
-      .then((res) => res.data);
+  async getSettings() {
+    const res = await this._api.get(BackendApiRoutes.CONF);
+    return res.data;
   }
 
-  saveSettings(settings) {
-    /*
-    {
+  async saveSettings(settings) {
+    /*{
       "repoName": "string",
       "buildCommand": "string",
       "mainBranch": "string",
       "period": 0
-    }
-    */
-    return this._api.post(BackendApiRoutes.CONF, settings);
+    }*/
+    await this._api.post(BackendApiRoutes.CONF, settings);
   }
 
-  deleteSettings() {
-    return this._api.delete(BackendApiRoutes.CONF);
-  }
-
-  getBuildList(offset = undefined, limit = 25) {
+  async getBuildList(offset = undefined, limit = 25) {
     const params = {
       offset,
       limit
     };
 
-    return this._api.get(BackendApiRoutes.BUILD_LIST, {
-      params
-    }).then((res) => res.data)
+    const res = await this._api.get(BackendApiRoutes.BUILD_LIST, {params});
+    return res.data;
   }
 
-  getBuild(id) {
+  async getBuild(id) {
     const params = {
       buildId: id
     };
 
-    return this._api.get(BackendApiRoutes.BUILD_DETAILS, {
-      params
-    }).then((res) => res.data);
+    const res = await this._api.get(BackendApiRoutes.BUILD_DETAILS, {params});
+    return res.data;
   }
 
-  requestBuild(request) {
-    /*
-    {
+  async requestBuild(request) {
+    /*{
       "commitMessage": "string",
       "commitHash": "string",
       "branchName": "string",
       "authorName": "string"
-    }
-    */
-    return this._api.post(BackendApiRoutes.BUILD_REQUEST, request);
+    }*/
+    const res = await this._api.post(BackendApiRoutes.BUILD_REQUEST, request);
+    return res.data;
   }
 
-  startBuild(startInfo) {
-    /*
-    {
+  async startBuild(startInfo) {
+    /*{
       "buildId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "dateTime": "2020-03-17T05:12:37.344Z"
-    }
-    */
-    return this._api.post(BackendApiRoutes.BUILD_START, startInfo);
+    }*/
+    await this._api.post(BackendApiRoutes.BUILD_START, startInfo);
   }
 
-  finishBuild(finishInfo) {
-    /*
-    {
+  async finishBuild(finishInfo) {
+    /*{
       "buildId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "duration": 0,
       "success": true,
       "buildLog": "string"
-    }
-    */
-    return this._api.post(BackendApiRoutes.BUILD_FINISH, finishInfo);
+    }*/
+    await this._api.post(BackendApiRoutes.BUILD_FINISH, finishInfo);
   }
 
-  cancelBuild(buildId) {
-    /*
-    {
+  async cancelBuild(buildId) {
+    /*{
       "buildId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-    }
-     */
-    return this._api.post(BackendApiRoutes.BUILD_CANCEL, {
-      buildId
-    });
+    }*/
+    await this._api.post(BackendApiRoutes.BUILD_CANCEL, {buildId});
   }
 }
 

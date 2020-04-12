@@ -1,30 +1,68 @@
-const fs = require('fs');
+const del = require('del');
 const path = require('path');
-const git = require('simple-git/promise');
+const util = require('util');
+const {exec} = require('child_process');
+const convertStdoutToCommitObj = require('../utils').convertStdoutToCommitObj;
+
+const execPromise = util.promisify(exec);
 
 class GitHelper {
-  constructor(repoPath) {
-    const appDir = path.dirname(require.main.filename);
-    const repoDirPath = path.resolve(appDir, 'git/repo'); // for now git repository is stored locally
-
-    this._localPath = path.resolve(repoDirPath, repoPath);
-    this._githubPath = 'http://github.com/' + repoPath;
+  constructor(repoName) {
+    this._repoName = repoName;
+    const appDirPath = path.dirname(require.main.filename);
+    this._repoDirPath = path.resolve(appDirPath, 'git/repo');
+    this._repoPath = path.resolve(this._repoDirPath, this._repoName);
   }
 
-  clone() {
-    return fs.promises.access(repoDirPath)
-      .catch(() => fs.promises.mkdir(repoDirPath).then(() => git().clone(this._githubPath, this._localPath)))
-      .then(() => fs.promises.access(this._localPath))
-      .then(() => git().clone(this._githubPath, this._localPath))
-      .catch(() => git(this._localPath).pull());
+  async clone() {
+    try {
+      await del(this._repoDirPath);
+      const repoUrl = `git@github.com:${this._repoName}`;
+      await execPromise(`git clone ${repoUrl} ${this._repoPath}`);
+    } catch (err) {
+      console.error(err.stderr);
+      throw new Error(err.stderr);
+    }
   }
 
-  getLastCommit(branch) {
-    return git(this._localPath).log(['-n', '1', branch]).then((data) => data.latest);
+  async checkout(branch) {
+    try {
+      await execPromise(`git checkout ${branch}`, {
+        cwd: this._repoPath
+      });
+
+    } catch (err) {
+      console.error(err.stderr);
+      throw new Error(err.stderr);
+    }
   }
 
-  getCommit(hash) {
-    return git(this._localPath).log(['-1', hash]).then((data) => data.latest);
+  async getCommit(hash) {
+    try {
+      // https://git-scm.com/docs/pretty-formats
+      const {stdout} =  await execPromise(`git log -1 --pretty=format:"%h|%an|%s|%D" ${hash}`, {
+        cwd: this._repoPath
+      });
+
+      return convertStdoutToCommitObj(stdout);
+    } catch (err) {
+      console.error(err.stderr);
+      throw new Error(err.stderr);
+    }
+  }
+
+  async getLastCommit() {
+    try {
+      // https://git-scm.com/docs/pretty-formats
+      const {stdout} =  await execPromise(`git log -1 --pretty=format:"%h|%an|%s|%D"`, {
+        cwd: this._repoPath
+      });
+
+      return convertStdoutToCommitObj(stdout);
+    } catch (err) {
+      console.error(err.stderr);
+      throw new Error(err.stderr);
+    }
   }
 }
 

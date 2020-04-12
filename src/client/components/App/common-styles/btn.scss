@@ -25,7 +25,8 @@
     outline-color: $border-color-focus;
   }
 
-  &:disabled {
+  &:disabled,
+  &--disabled {
     opacity: 0.5;
   }
 

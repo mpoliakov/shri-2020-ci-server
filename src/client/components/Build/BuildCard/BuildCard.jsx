@@ -40,14 +40,14 @@ const BuildCard = (props) => {
       </IconWrapper>
     </div>
     <div className="build-card__time">
-      <IconWrapper mix="build-card__time-start">
+      {build.start && <IconWrapper mix="build-card__time-start">
         <IconCalendar/>
         {formatDate(build.start)}
-      </IconWrapper>
-      <IconWrapper mix="build-card__time-duration">
+      </IconWrapper>}
+      {build.duration && <IconWrapper mix="build-card__time-duration">
         <IconWatch/>
         {formatDuration(build.duration)}
-      </IconWrapper>
+      </IconWrapper>}
     </div>
   </section>;
 };

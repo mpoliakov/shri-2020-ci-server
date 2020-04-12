@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {connect} from 'react-redux';
-
 import {AppRoutes} from 'Core/const';
 import {Link} from 'react-router-dom';
 
@@ -9,7 +8,6 @@ import Header from 'Comp/Layout/Header/Header';
 import Main from 'Comp/Layout/Main/Main';
 import Footer from 'Comp/Layout/Footer/Footer';
 import H2 from 'Comp/Controls/Heading/H2/H2';
-import Btn from 'Comp/Controls/Buttons/Btn/Btn';
 import IconSettings from 'Comp/Controls/Icons/IconSettings/IconSettings';
 import IconRebuild from 'Comp/Controls/Icons/IconRebuild/IconRebuild';
 import BuildLog from 'Comp/Build/BuildLog/BuildLog';
@@ -25,25 +23,27 @@ class PageBuildDetails extends React.PureComponent {
   componentDidMount() {
     const {
       match,
-      settings,
-      loadSettings,
-      loadData,
+      build,
+      loadBuild,
+      loadLog,
     } = this.props;
 
-    if (!settings) {
-      loadSettings();
-    }
-
     const buildNumber = Number(match.params.number);
-    loadData(buildNumber);
+
+    //if (!build || build.id !== buildNumber) {
+      loadBuild(buildNumber);
+      loadLog(buildNumber);
+    //}
   }
 
   componentWillUnmount() {
     const {
-      resetData
+      resetBuild,
+      resetLog
     } = this.props;
 
-    resetData();
+    resetBuild();
+    resetLog();
   }
 
   render() {
@@ -93,21 +93,29 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   loadSettings: () => {
     dispatch(SettingsOperation.loadSettings());
   },
-  loadData: (buildNumber) => {
+  loadBuild: (buildNumber) => {
     dispatch(BuildOperation.loadBuild(buildNumber));
-    dispatch(BuildOperation.loadLog(buildNumber));
   },
-  resetData: () => {
+  loadLog: (buildId) => {
+    dispatch(BuildOperation.loadLog(buildId));
+  },
+  resetBuild: () => {
     dispatch(ActionCreator.setBuild(null));
+  },
+  resetLog: () => {
     dispatch(ActionCreator.setLog(null));
   },
-  handleSubmit: (evt) => {
+  handleSubmit: async (evt) => {
     evt.preventDefault();
 
-    /*dispatch(Operation.addBuild({
-      commitHash: evt.target.commitHash.value,
-    }))
-      .then((build) => ownProps.history.push(AppRoutes.BUILD + `/` + build.buildNumber));*/
+    try {
+      const build = await dispatch(BuildOperation.addBuild({
+        commitHash: evt.target.commitHash.value,
+      }));
+
+      ownProps.history.push(AppRoutes.BUILD + `/` + build.buildNumber);
+    } catch {
+    }
   }
 });
 

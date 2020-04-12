@@ -1,58 +1,47 @@
 const GitHelper = require('../git/git-helper');
 const backendAPI = require('../backend/backend-api');
+const handleError = require('./handle-error');
 
 exports.get = async (req, res) => {
-  let data = null;
-
   try {
-    data = await backendAPI.getSettings();
+    const settings = await backendAPI.getSettings();
+    return res.json(settings.data);
+  } catch (err) {
+    return handleError(res, err);
   }
-  catch (err) {
-    console.error(err.response.data);
-    return res.status(err.response.data.status).json(err.response.data);
-  }
-
-  return res.json(data.data);
 };
 
-// 1. Save settings (Backend API: POST /conf). If there is already saved settings, should be edited (or deleted and created new?)
-// 2. Clone git repository
-// 3. Get last commit
-// 4. Request build (Backend API: POST /build/request)
+
 exports.save = async (req, res) => {
-  const settings = req.body;
-
-  const requestBody = {
-    repoName: settings.repoName,
-    buildCommand: settings.buildCommand,
-    mainBranch: settings.mainBranch ? settings.mainBranch : `master`,
-    period: isNaN(parseInt(settings.period)) ? 0 : parseInt(settings.period)
-  };
-
   try {
-    await backendAPI.saveSettings(requestBody);
+    const settings = {
+      repoName: req.body.repoName,
+      buildCommand: req.body.buildCommand,
+      mainBranch: req.body.mainBranch ? req.body.mainBranch : `master`,
+      period: isNaN(parseInt(req.body.period)) ? 0 : parseInt(req.body.period)
+    };
 
-    // const gitHelper = new GitHelper(settings.repoName);
-    /*backendAPI.saveConf(settings)
-      .then(() => gitHelper.clone())
-      .then(() => gitHelper.getLastCommit(settings.mainBranch))
-      .then((commit) => backendAPI.requestBuild({
-        commitMessage: commit.message,
-        commitHash: commit.hash,
-        branchName: settings.mainBranch, // or use commit.refs = 'HEAD -> master, origin/master, origin/HEAD'
-        authorName: commit.author_name
-      }))
-      .then(() => {
-        res.status(200).send('Success');
-      })
-      .catch((err) => {
-        res.status(500).send(err.toString());
-      });*/
-  }
-  catch (err) {
-    console.error(err.response.data);
-    return res.status(err.response.data.status).json(err.response.data);
-  }
+    // 1. Clone git repository
+    const gitHelper = new GitHelper(settings.repoName);
+    await gitHelper.clone();
 
-  return res.json(requestBody);
+    // 2. Get last commit
+    await gitHelper.checkout(settings.mainBranch);
+    const commit = await gitHelper.getLastCommit();
+
+    // 3. Save settings (Backend API: POST /conf)
+    await backendAPI.saveSettings(settings);
+
+    // 4. Request build (Backend API: POST /build/request)
+    await backendAPI.requestBuild({
+      commitMessage: commit.message,
+      commitHash: commit.hash,
+      branchName: settings.mainBranch,
+      authorName: commit.author
+    });
+
+    return res.json(settings);
+  } catch (err) {
+    return handleError(res, err);
+  }
 };

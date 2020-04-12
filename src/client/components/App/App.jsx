@@ -15,7 +15,7 @@ import PageBuildDetails from 'Comp/Pages/PageBuildDetails/PageBuildDetails';
 import PageBuildHistory from 'Comp/Pages/PageBuildHistory/PageBuildHistory';
 
 import SettingsOperation from 'Reducer/settings/operation';
-import {getSettings, getLoadedFlag} from 'Reducer/settings/selectors';
+import {getSettings, getLoaded} from 'Reducer/settings/selectors';
 
 class App extends React.PureComponent {
   componentDidMount () {
@@ -54,7 +54,7 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   settings: getSettings(state),
-  loaded: getLoadedFlag(state),
+  loaded: getLoaded(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

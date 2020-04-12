@@ -1,7 +1,10 @@
+const Utils = require('../utils');
+
 const mockedLog = require('./mock/log');
 
 const buildService = {
-  getLog(buildId) {
+  async getLog(buildId) {
+    await Utils.delay(500);
     return mockedLog;
   }
 }
