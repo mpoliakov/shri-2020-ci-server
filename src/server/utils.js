@@ -9,7 +9,7 @@ const convertStdoutToCommitObj = (stdout) => {
     hash: segments[0],
     author: segments[1],
     message: segments[2],
-    branch: segments[3]
+    branch: null // segments[3]
   };
 };
 

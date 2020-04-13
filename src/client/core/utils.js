@@ -18,7 +18,3 @@ export const formatDate = (date) => {
 };
 
 export const formatDuration = (duration) => prettyMilliseconds(duration);
-
-export const delay = (ms) => new Promise((resolve) => {
-  setTimeout(resolve, ms);
-});

@@ -1,12 +1,11 @@
-const GitHelper = require('../git/git-helper');
-const backendAPI = require('../backend/backend-api');
+const {GitHelper} = require('../git/git-helper');
+const backendAPI = require('../backend/backend-api').instance;
 const buildService = require('../builds/build-service');
 const handleError = require('./handle-error');
 
 exports.getList = async (req, res) => {
   try {
     const builds = await backendAPI.getBuildList();
-
     return res.json(builds.data);
   } catch (err) {
     return handleError(res, err);
@@ -48,7 +47,7 @@ exports.request = async (req, res) => {
     const build = await backendAPI.requestBuild({
       commitMessage: commit.message,
       commitHash: commit.hash,
-      branchName: settings.mainBranch,
+      branchName: commit.branch || settings.mainBranch,
       authorName: commit.author
     });
 

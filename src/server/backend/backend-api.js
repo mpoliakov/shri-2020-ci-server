@@ -5,23 +5,8 @@ const dotenv = require('dotenv');
 const BackendApiRoutes = require('../const').BackendApiRoutes;
 
 class BackendAPI {
-  constructor(authToken) {
-    this._api = axios.create({
-      baseURL: 'https://hw.shri.yandex/api/',
-      timeout: 10000,
-      headers: {
-        Authorization: 'Bearer ' + authToken
-      },
-      httpsAgent: new https.Agent({
-        rejectUnauthorized: false
-      })
-    });
-
-    /*
-    const onSuccess = (response) => {};
-    const onFail = (error) => {};
-    this._api.interceptors.response.use(onSuccess, onFail);
-    */
+  constructor(api) {
+    this._api = api;
   }
 
   async getSettings() {
@@ -97,5 +82,27 @@ class BackendAPI {
 
 dotenv.config();
 
-module.exports = new BackendAPI(process.env.AUTH_TOKEN);
+const api = axios.create({
+  baseURL: 'https://hw.shri.yandex/api/',
+  timeout: 10000,
+  headers: {
+    Authorization: 'Bearer ' + process.env.AUTH_TOKEN
+  },
+  httpsAgent: new https.Agent({
+    rejectUnauthorized: false
+  })
+});
+
+/*
+const onSuccess = (response) => {};
+const onFail = (error) => {};
+api.interceptors.response.use(onSuccess, onFail);
+*/
+
+const instance = new BackendAPI(api);
+
+module.exports = {
+  BackendAPI,
+  instance
+};
 

@@ -1,5 +1,5 @@
-const GitHelper = require('../git/git-helper');
-const backendAPI = require('../backend/backend-api');
+const {GitHelper} = require('../git/git-helper');
+const backendAPI = require('../backend/backend-api').instance;
 const handleError = require('./handle-error');
 
 exports.get = async (req, res) => {
@@ -10,7 +10,6 @@ exports.get = async (req, res) => {
     return handleError(res, err);
   }
 };
-
 
 exports.save = async (req, res) => {
   try {
