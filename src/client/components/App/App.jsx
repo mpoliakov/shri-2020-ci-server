@@ -5,17 +5,17 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux'
 
-import history from 'Core/history';
-import {AppRoutes} from 'Core/const';
+import history from '@core/history';
+import {AppRoutes} from '@core/const';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
-import PageStartScreen from 'Comp/Pages/PageStartScreen/PageStartScreen';
-import PageSettings from 'Comp/Pages/PageSettings/PageSettings';
-import PageBuildDetails from 'Comp/Pages/PageBuildDetails/PageBuildDetails';
-import PageBuildHistory from 'Comp/Pages/PageBuildHistory/PageBuildHistory';
+import PageStartScreen from '@components/Pages/PageStartScreen/PageStartScreen';
+import PageSettings from '@components/Pages/PageSettings/PageSettings';
+import PageBuildDetails from '@components/Pages/PageBuildDetails/PageBuildDetails';
+import PageBuildHistory from '@components/Pages/PageBuildHistory/PageBuildHistory';
 
-import SettingsOperation from 'Reducer/settings/operation';
-import {getSettings, getLoaded} from 'Reducer/settings/selectors';
+import SettingsOperation from '@reducer/settings/operation';
+import {getSettings, getLoaded} from '@reducer/settings/selectors';
 
 class App extends React.PureComponent {
   componentDidMount () {

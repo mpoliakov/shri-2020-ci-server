@@ -1,5 +1,5 @@
-import {ActionCreator} from 'Reducer/build/reducer';
-import {getBuilds} from 'Reducer/builds/selectors';
+import {ActionCreator} from '@reducer/build/reducer';
+import {getBuilds} from '@reducer/builds/selectors';
 
 const Operation = {
   loadBuild: (buildNumber) => async (dispatch, getState, api) => {

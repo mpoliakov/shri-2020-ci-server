@@ -6,9 +6,9 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 
 import {createAPI} from './core/api';
-import reducer from 'Reducer/reducer';
+import reducer from '@reducer/reducer';
 
-import App from 'Comp/App/App';
+import App from '@components/App/App';
 
 const api = createAPI();
 

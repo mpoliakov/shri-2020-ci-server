@@ -3,9 +3,9 @@ import './build-status.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import IconSuccess from 'Comp/Controls/Icons/IconSuccess/IconSuccess';
-import IconCross from 'Comp/Controls/Icons/IconCross/IconCross';
-import IconWaiting from 'Comp/Controls/Icons/IconWaiting/IconWaiting';
+import IconSuccess from '@components/Controls/Icons/IconSuccess/IconSuccess';
+import IconCross from '@components/Controls/Icons/IconCross/IconCross';
+import IconWaiting from '@components/Controls/Icons/IconWaiting/IconWaiting';
 
 const BuildStatus = ({mix, status}) => {
   const className = `build-status build-status--${status.toLowerCase()} ${mix}`.trimEnd();

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from 'Comp/Controls/Icons/Icon/Icon';
+import Icon from '@components/Controls/Icons/Icon/Icon';
 
 const IconRunBuild = (props) => {
   const {

@@ -5,9 +5,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
-import {AppRoutes} from 'Core/const';
-import BuildOperation from 'Reducer/build/operation';
-import ControlGroup from 'Comp/Forms/ControlGroup/ControlGroup';
+import {AppRoutes} from '@core/const';
+import BuildOperation from '@reducer/build/operation';
+import ControlGroup from '@components/Forms/ControlGroup/ControlGroup';
 
 class FormRunBuild extends React.PureComponent {
   render() {

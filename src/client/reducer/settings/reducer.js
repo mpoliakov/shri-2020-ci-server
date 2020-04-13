@@ -1,4 +1,4 @@
-import {extend} from 'Core/utils';
+import {extend} from '@core/utils';
 
 const initialState = {
   settings: null,

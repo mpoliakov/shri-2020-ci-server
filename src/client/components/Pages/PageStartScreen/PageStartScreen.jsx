@@ -3,13 +3,13 @@ import './placeholder.scss';
 import React from 'react';
 
 import {Link} from 'react-router-dom';
-import {AppRoutes} from 'Core/const';
+import {AppRoutes} from '@core/const';
 
-import Header from 'Comp/Layout/Header/Header';
-import Main from 'Comp/Layout/Main/Main';
-import Footer from 'Comp/Layout/Footer/Footer';
-import H1 from 'Comp/Controls/Heading/H1/H1';
-import IconSettings from 'Comp/Controls/Icons/IconSettings/IconSettings';
+import Header from '@components/Layout/Header/Header';
+import Main from '@components/Layout/Main/Main';
+import Footer from '@components/Layout/Footer/Footer';
+import H1 from '@components/Controls/Heading/H1/H1';
+import IconSettings from '@components/Controls/Icons/IconSettings/IconSettings';
 
 const PageStartScreen = () => (
   <React.Fragment>

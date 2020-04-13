@@ -50,9 +50,9 @@ module.exports = {
   resolve: {
     extensions: [`.js`, `.json`, `.jsx`, `.ts`, `.tsx`, `.scss`],
     alias: {
-      Core: path.resolve(__dirname, `src/client/core`),
-      Comp: path.resolve(__dirname, `src/client/components`),
-      Reducer: path.resolve(__dirname, `src/client/reducer`),
+      '@core': path.resolve(__dirname, `src/client/core`),
+      '@components': path.resolve(__dirname, `src/client/components`),
+      '@reducer': path.resolve(__dirname, `src/client/reducer`),
     }
   },
 };

@@ -3,14 +3,14 @@ import './build-card.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {formatDate, formatDuration} from 'Core/utils';
+import {formatDate, formatDuration} from '@core/utils';
 
-import BuildStatus from 'Comp/Build/BuildStatus/BuildStatus';
-import IconWrapper from 'Comp/Controls/Icons/IconWrapper/IconWrapper';
-import IconCalendar from 'Comp/Controls/Icons/IconCalendar/IconCalendar';
-import IconWatch from 'Comp/Controls/Icons/IconWatch/IconWatch';
-import IconCommit from 'Comp/Controls/Icons/IconCommit/IconCommit';
-import IconUser from 'Comp/Controls/Icons/IconUser/IconUser';
+import BuildStatus from '@components/Build/BuildStatus/BuildStatus';
+import IconWrapper from '@components/Controls/Icons/IconWrapper/IconWrapper';
+import IconCalendar from '@components/Controls/Icons/IconCalendar/IconCalendar';
+import IconWatch from '@components/Controls/Icons/IconWatch/IconWatch';
+import IconCommit from '@components/Controls/Icons/IconCommit/IconCommit';
+import IconUser from '@components/Controls/Icons/IconUser/IconUser';
 
 const BuildCard = (props) => {
   const {

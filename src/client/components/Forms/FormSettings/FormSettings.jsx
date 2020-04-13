@@ -7,13 +7,13 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {withRouter} from 'react-router-dom';
 
-import {AppRoutes} from 'Core/const';
-import {getError, getLoading, getSettings} from 'Reducer/settings/selectors';
-import SettingsOperation from 'Reducer/settings/operation';
-import {ActionCreator} from 'Reducer/settings/reducer';
+import {AppRoutes} from '@core/const';
+import {getError, getLoading, getSettings} from '@reducer/settings/selectors';
+import SettingsOperation from '@reducer/settings/operation';
+import {ActionCreator} from '@reducer/settings/reducer';
 
-import ControlGroup from 'Comp/Forms/ControlGroup/ControlGroup';
-import ErrorMessage from 'Comp/Controls/ErrorMessage/ErrorMessage';
+import ControlGroup from '@components/Forms/ControlGroup/ControlGroup';
+import ErrorMessage from '@components/Controls/ErrorMessage/ErrorMessage';
 
 class FormSettings extends React.PureComponent {
   render() {

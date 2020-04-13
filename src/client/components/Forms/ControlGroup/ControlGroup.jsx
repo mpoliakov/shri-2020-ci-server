@@ -3,7 +3,7 @@ import '../form.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import IconCross from 'Comp/Controls/Icons/IconCross/IconCross';
+import IconCross from '@components/Controls/Icons/IconCross/IconCross';
 
 class ControlGroup extends React.PureComponent {
   constructor(props) {

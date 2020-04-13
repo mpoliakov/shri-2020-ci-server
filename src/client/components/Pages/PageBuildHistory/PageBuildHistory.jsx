@@ -5,20 +5,20 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {AppRoutes} from 'Core/const';
+import {AppRoutes} from '@core/const';
 
-import Header from 'Comp/Layout/Header/Header';
-import Main from 'Comp/Layout/Main/Main';
-import Footer from 'Comp/Layout/Footer/Footer';
-import Modal from 'Comp/Modal/Modal';
-import H2 from 'Comp/Controls/Heading/H2/H2';
-import IconSettings from 'Comp/Controls/Icons/IconSettings/IconSettings';
-import FormRunBuild from 'Comp/Forms/FormRunBuild/FormRunBuild';
-import BuildCard from 'Comp/Build/BuildCard/BuildCard';
+import Header from '@components/Layout/Header/Header';
+import Main from '@components/Layout/Main/Main';
+import Footer from '@components/Layout/Footer/Footer';
+import Modal from '@components/Modal/Modal';
+import H2 from '@components/Controls/Heading/H2/H2';
+import IconSettings from '@components/Controls/Icons/IconSettings/IconSettings';
+import FormRunBuild from '@components/Forms/FormRunBuild/FormRunBuild';
+import BuildCard from '@components/Build/BuildCard/BuildCard';
 
-import {getSettings} from 'Reducer/settings/selectors';
-import {getBuilds} from 'Reducer/builds/selectors';
-import BuildsOperation from 'Reducer/builds/operation';
+import {getSettings} from '@reducer/settings/selectors';
+import {getBuilds} from '@reducer/builds/selectors';
+import BuildsOperation from '@reducer/builds/operation';
 
 class PageBuildHistory extends React.PureComponent {
   componentDidMount() {

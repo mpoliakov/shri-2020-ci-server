@@ -1,4 +1,4 @@
-import {ActionCreator} from 'Reducer/settings/reducer';
+import {ActionCreator} from '@reducer/settings/reducer';
 
 const Operation = {
   loadSettings: () => async (dispatch, getState, api) => {

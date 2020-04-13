@@ -1,23 +1,23 @@
 import React from 'react';
 
 import {connect} from 'react-redux';
-import {AppRoutes} from 'Core/const';
+import {AppRoutes} from '@core/const';
 import {Link} from 'react-router-dom';
 
-import Header from 'Comp/Layout/Header/Header';
-import Main from 'Comp/Layout/Main/Main';
-import Footer from 'Comp/Layout/Footer/Footer';
-import H2 from 'Comp/Controls/Heading/H2/H2';
-import IconSettings from 'Comp/Controls/Icons/IconSettings/IconSettings';
-import IconRebuild from 'Comp/Controls/Icons/IconRebuild/IconRebuild';
-import BuildLog from 'Comp/Build/BuildLog/BuildLog';
-import BuildCard from 'Comp/Build/BuildCard/BuildCard';
+import Header from '@components/Layout/Header/Header';
+import Main from '@components/Layout/Main/Main';
+import Footer from '@components/Layout/Footer/Footer';
+import H2 from '@components/Controls/Heading/H2/H2';
+import IconSettings from '@components/Controls/Icons/IconSettings/IconSettings';
+import IconRebuild from '@components/Controls/Icons/IconRebuild/IconRebuild';
+import BuildLog from '@components/Build/BuildLog/BuildLog';
+import BuildCard from '@components/Build/BuildCard/BuildCard';
 
-import {ActionCreator} from 'Reducer/build/reducer';
-import SettingsOperation from 'Reducer/settings/operation';
-import BuildOperation from 'Reducer/build/operation';
-import {getBuild, getLog} from 'Reducer/build/selectors';
-import {getSettings} from 'Reducer/settings/selectors';
+import {ActionCreator} from '@reducer/build/reducer';
+import SettingsOperation from '@reducer/settings/operation';
+import BuildOperation from '@reducer/build/operation';
+import {getBuild, getLog} from '@reducer/build/selectors';
+import {getSettings} from '@reducer/settings/selectors';
 
 class PageBuildDetails extends React.PureComponent {
   componentDidMount() {

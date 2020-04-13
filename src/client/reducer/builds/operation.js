@@ -1,4 +1,4 @@
-import {ActionCreator} from 'Reducer/builds/reducer';
+import {ActionCreator} from '@reducer/builds/reducer';
 
 const Operation = {
   loadBuilds: () => async (dispatch, getState, api) => {

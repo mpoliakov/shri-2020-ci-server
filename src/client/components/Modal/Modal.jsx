@@ -2,7 +2,7 @@ import './modal.scss';
 import './modal-dialog.scss';
 
 import React from 'react';
-import IconRunBuild from 'Comp/Controls/Icons/IconRunBuild/IconRunBuild';
+import IconRunBuild from '@components/Controls/Icons/IconRunBuild/IconRunBuild';
 
 class Modal extends React.PureComponent {
   constructor(props) {

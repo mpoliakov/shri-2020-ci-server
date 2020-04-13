@@ -2,12 +2,12 @@ import './build-settings.scss';
 
 import React from 'react';
 
-import Header from 'Comp/Layout/Header/Header';
-import Main from 'Comp/Layout/Main/Main';
-import Footer from 'Comp/Layout/Footer/Footer';
-import H1 from 'Comp/Controls/Heading/H1/H1';
-import H3 from 'Comp/Controls/Heading/H3/H3';
-import FormSettings from 'Comp/Forms/FormSettings/FormSettings';
+import Header from '@components/Layout/Header/Header';
+import Main from '@components/Layout/Main/Main';
+import Footer from '@components/Layout/Footer/Footer';
+import H1 from '@components/Controls/Heading/H1/H1';
+import H3 from '@components/Controls/Heading/H3/H3';
+import FormSettings from '@components/Forms/FormSettings/FormSettings';
 
 const PageSettings = () => (
   <React.Fragment>
