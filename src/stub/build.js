@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   id: `3fa85f64-5717-4562-b3fc-2c963f66afa6`,
   configurationId: `3fa85f64-5717-4562-b3fc-2c963f66afa6`,
   buildNumber: 1368,

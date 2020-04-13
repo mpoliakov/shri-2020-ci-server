@@ -30,7 +30,6 @@ class GitHelper {
       await execPromise(`git checkout ${branch}`, {
         cwd: this._repoPath
       });
-
     } catch (err) {
       console.error(err.stderr);
       throw new Error(err.stderr);
@@ -39,8 +38,11 @@ class GitHelper {
 
   async getCommit(hash) {
     try {
-      // https://git-scm.com/docs/pretty-formats
-      const {stdout} =  await execPromise(`git log -1 --pretty=format:"%h|%an|%s|%D" ${hash}`, {
+      const command = hash ?
+        `git log -1 --pretty=format:"%h|%an|%s|%D" ${hash}` :
+        `git log -1 --pretty=format:"%h|%an|%s|%D"`; // https://git-scm.com/docs/pretty-formats
+
+      const {stdout} =  await execPromise(command, {
         cwd: this._repoPath
       });
 
@@ -52,18 +54,10 @@ class GitHelper {
   }
 
   async getLastCommit() {
-    try {
-      // https://git-scm.com/docs/pretty-formats
-      const {stdout} =  await execPromise(`git log -1 --pretty=format:"%h|%an|%s|%D"`, {
-        cwd: this._repoPath
-      });
-
-      return convertStdoutToCommitObj(stdout);
-    } catch (err) {
-      console.error(err.stderr);
-      throw new Error(err.stderr);
-    }
+    return await this.getCommit();
   }
 }
 
-module.exports = GitHelper;
+module.exports = {
+  GitHelper
+};

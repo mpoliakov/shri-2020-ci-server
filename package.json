@@ -8,7 +8,9 @@
     "start": "npm run build && node src/server/index.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon src/server/index.js --ignore src/client/",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "npm run test.jest",
+    "test.jest": "jest"
   },
   "repository": {
     "type": "git",
@@ -47,10 +49,14 @@
     "concurrently": "5.1.0",
     "css-loader": "3.4.2",
     "cssnano": "4.1.10",
+    "identity-obj-proxy": "3.0.0",
+    "jest": "25.3.0",
     "mini-css-extract-plugin": "0.9.0",
     "node-sass": "4.13.1",
     "nodemon": "2.0.2",
     "postcss-loader": "3.0.0",
+    "react-test-renderer": "16.13.1",
+    "redux-mock-store": "1.5.4",
     "sass-loader": "8.0.2",
     "style-loader": "1.1.3",
     "webpack": "4.42.1",
@@ -58,8 +64,17 @@
     "webpack-dev-server": "3.10.3"
   },
   "engines": {
-    "node": "10.12.0",
+    "node": "12.16.2",
     "npm": "6.4.1"
   },
-  "engineStrict": false
+  "engineStrict": false,
+  "jest": {
+    "moduleNameMapper": {
+      "^@core(.*)$": "<rootDir>/src/client/core$1",
+      "^@components(.*)$": "<rootDir>/src/client/components$1",
+      "^@reducer(.*)$": "<rootDir>/src/client/reducer$1",
+      "^@stub(.*)$": "<rootDir>/src/stub$1",
+      "\\.(css|scss)$": "identity-obj-proxy"
+    }
+  }
 }

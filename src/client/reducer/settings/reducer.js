@@ -23,7 +23,8 @@ const ActionCreator = {
     payload: error
   }),
   startLoading: () => ({
-    type: ActionType.START_LOADING
+    type: ActionType.START_LOADING,
+    payload: true
   }),
 };
 
@@ -42,7 +43,7 @@ const reducer = (state = initialState, action) => {
       })
     case ActionType.START_LOADING:
       return extend(state, {
-        loading: true
+        loading: action.payload
       })
   }
 
