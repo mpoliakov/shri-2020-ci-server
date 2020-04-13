@@ -53,6 +53,7 @@ module.exports = {
       '@core': path.resolve(__dirname, `src/client/core`),
       '@components': path.resolve(__dirname, `src/client/components`),
       '@reducer': path.resolve(__dirname, `src/client/reducer`),
+      '@stub': path.resolve(__dirname, `src/stub`)
     }
   },
 };
