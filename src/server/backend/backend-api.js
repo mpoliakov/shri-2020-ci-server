@@ -1,4 +1,5 @@
 const axios = require('axios');
+const axiosRetry = require('axios-retry')
 const https = require('https');
 const dotenv = require('dotenv');
 
@@ -7,11 +8,17 @@ const BackendApiRoutes = require('../const').BackendApiRoutes;
 class BackendAPI {
   constructor(api) {
     this._api = api;
+
+    this._api.interceptors.response.use((res) => res.data);
+
+    axiosRetry(this._api, {
+      retries: 3,
+      retryDelay: axiosRetry.exponentialDelay
+    });
   }
 
   async getSettings() {
-    const res = await this._api.get(BackendApiRoutes.CONF);
-    return res.data;
+    return await this._api.get(BackendApiRoutes.CONF);
   }
 
   async saveSettings(settings) {
@@ -25,36 +32,32 @@ class BackendAPI {
   }
 
   async deleteSettings() {
-    const res = await this._api.delete(BackendApiRoutes.CONF);
-    return res.data;
+    await this._api.delete(BackendApiRoutes.CONF);
   }
 
   async getBuildList(offset = undefined, limit = 25) {
-    const params = {
-      offset,
-      limit
-    };
-
-    const res = await this._api.get(BackendApiRoutes.BUILD_LIST, {params});
-    return res.data;
+    return await this._api.get(BackendApiRoutes.BUILD_LIST, {
+      params: {
+        offset,
+        limit
+      }
+    });
   }
 
-  async getBuild(id) {
-    const params = {
-      buildId: id
-    };
-
-    const res = await this._api.get(BackendApiRoutes.BUILD_DETAILS, {params});
-    return res.data;
+  async getBuild(buildId) {
+    return await this._api.get(BackendApiRoutes.BUILD_DETAILS, {
+      params: {
+        buildId
+      }
+    });
   }
 
-  async getBuildLog(id) {
-    const params = {
-      buildId: id
-    };
-
-    const res = await this._api.get(BackendApiRoutes.BUILD_LOG, {params});
-    return res.data;
+  async getBuildLog(buildId) {
+    return await this._api.get(BackendApiRoutes.BUILD_LOG, {
+      params: {
+        buildId
+      }
+    });
   }
 
   async requestBuild(request) {
@@ -64,8 +67,7 @@ class BackendAPI {
       "branchName": "string",
       "authorName": "string"
     }*/
-    const res = await this._api.post(BackendApiRoutes.BUILD_REQUEST, request);
-    return res.data;
+    return await this._api.post(BackendApiRoutes.BUILD_REQUEST, request);
   }
 
   async startBuild(startInfo) {
