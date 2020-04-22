@@ -2,6 +2,7 @@ const BackendApiRoutes = {
   CONF: '/conf',
   BUILD_LIST: '/build/list',
   BUILD_DETAILS: '/build/details',
+  BUILD_LOG: '/build/log',
   BUILD_REQUEST: '/build/request',
   BUILD_START: '/build/start',
   BUILD_FINISH: '/build/finish',

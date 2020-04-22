@@ -1,6 +1,5 @@
 const {GitHelper} = require('../git/git-helper');
 const backendAPI = require('../backend/backend-api').instance;
-const buildService = require('../builds/build-service');
 const handleError = require('./handle-error');
 
 exports.getList = async (req, res) => {
@@ -26,7 +25,7 @@ exports.getDetails = async (req, res) => {
 exports.getLog = async (req, res) => {
   try {
     const buildId = req.params.buildId;
-    const log = await buildService.getLog(buildId);
+    const log = await backendAPI.getBuildLog(buildId);
 
     return res.send(log);
   } catch (err) {

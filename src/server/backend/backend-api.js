@@ -24,6 +24,11 @@ class BackendAPI {
     await this._api.post(BackendApiRoutes.CONF, settings);
   }
 
+  async deleteSettings() {
+    const res = await this._api.delete(BackendApiRoutes.CONF);
+    return res.data;
+  }
+
   async getBuildList(offset = undefined, limit = 25) {
     const params = {
       offset,
@@ -40,6 +45,15 @@ class BackendAPI {
     };
 
     const res = await this._api.get(BackendApiRoutes.BUILD_DETAILS, {params});
+    return res.data;
+  }
+
+  async getBuildLog(id) {
+    const params = {
+      buildId: id
+    };
+
+    const res = await this._api.get(BackendApiRoutes.BUILD_LOG, {params});
     return res.data;
   }
 

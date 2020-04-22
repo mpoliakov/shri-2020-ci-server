@@ -67,7 +67,6 @@
     "node": "12.16.2",
     "npm": "6.4.1"
   },
-  "engineStrict": false,
   "jest": {
     "moduleNameMapper": {
       "^@core(.*)$": "<rootDir>/src/client/core$1",
@@ -76,5 +75,11 @@
       "^@stub(.*)$": "<rootDir>/src/stub$1",
       "\\.(css|scss)$": "identity-obj-proxy"
     }
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "src/client/",
+      "src/server/git/repo/"
+    ]
   }
 }
