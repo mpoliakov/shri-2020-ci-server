@@ -5,7 +5,7 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 
-import {createAPI} from './core/api';
+import {createAPI} from '@core/api';
 import reducer from '@reducer/reducer';
 
 import App from '@components/App/App';

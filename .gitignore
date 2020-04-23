@@ -13,7 +13,6 @@ node_modules/
 
 # server
 .env
-src/server/git/repo/
-src/server/console.js
-
-
+src/server/git/repo/*
+src/server/cli.ts
+dist/server
