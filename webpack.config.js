@@ -7,11 +7,11 @@ module.exports = {
   entry: `./src/client/index.js`,
   output: {
     filename: `bundle.js`,
-    path: path.join(__dirname, `public`),
+    path: path.join(__dirname, `dist`),
     publicPath: `/`
   },
   devServer: {
-    contentBase: path.join(__dirname, `public`),
+    contentBase: path.join(__dirname, `dist`),
     port: 1337,
     open: true,
     historyApiFallback: true,
@@ -26,6 +26,12 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: `babel-loader`,
+        },
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        use: {
+          loader: `awesome-typescript-loader`,
         },
       },
       {
@@ -48,7 +54,7 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: [`.js`, `.json`, `.jsx`, `.ts`, `.tsx`, `.scss`],
+    extensions: [`.js`, `.jsx`, `.ts`, `.tsx`, `.json`, `.scss`],
     alias: {
       '@core': path.resolve(__dirname, `src/client/core`),
       '@components': path.resolve(__dirname, `src/client/components`),

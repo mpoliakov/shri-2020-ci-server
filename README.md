@@ -10,9 +10,10 @@
 4) Открыть http://localhost:5000
 
 #### 📄 Домашние задания:
-1) [SHRIHOMEWORKIII-560](https://tracker.yandex.ru/SHRIHOMEWORKIII-560) Адаптивная вёрстка  >>  [markup/README.md](markup/README.md) 
-2) [SHRIHOMEWORKIII-557](https://tracker.yandex.ru/SHRIHOMEWORKIII-557) Node.js   >>  [src/server/README.md](src/server/README.MD)
-3) [SHRIHOMEWORKIII-558](https://tracker.yandex.ru/SHRIHOMEWORKIII-558) React  >>  [src/client/README.md](src/client/README.md)
-4) [SHRIHOMEWORKIII-564](https://tracker.yandex.ru/SHRIHOMEWORKIII-564) Тесты  >>  [TESTS.md](TESTS.md)
+1) [SHRIHOMEWORKIII-560](https://tracker.yandex.ru/SHRIHOMEWORKIII-560) Адаптивная вёрстка
+2) [SHRIHOMEWORKIII-557](https://tracker.yandex.ru/SHRIHOMEWORKIII-557) Node.js
+3) [SHRIHOMEWORKIII-558](https://tracker.yandex.ru/SHRIHOMEWORKIII-558) React
+4) [SHRIHOMEWORKIII-564](https://tracker.yandex.ru/SHRIHOMEWORKIII-564) Тесты
+5) [SHRIHOMEWORKIII-565](https://tracker.yandex.ru/SHRIHOMEWORKIII-565) Типизация
 
 
