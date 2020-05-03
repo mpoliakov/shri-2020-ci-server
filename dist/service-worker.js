@@ -73,7 +73,11 @@ self.addEventListener('fetch', function (event) {
         .catch(function () {
           return caches.match(key1)
             .then(function (response) {
-              return response;
+              return response || fetch(event.request)
+                .then(function (response) {
+                  update(key1, response);
+                  return response;
+                });
             })
         })
     );
