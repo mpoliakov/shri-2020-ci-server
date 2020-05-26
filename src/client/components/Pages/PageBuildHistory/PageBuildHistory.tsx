@@ -2,6 +2,8 @@ import './build-history.scss';
 
 import React from 'react';
 
+import {withTranslation, WithTranslation} from 'react-i18next';
+
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {AppRoutes} from '@core/const';
@@ -27,7 +29,7 @@ export interface PageBuildHistoryProps {
   loadBuilds: () => void;
 }
 
-class PageBuildHistory extends React.PureComponent<PageBuildHistoryProps> {
+class PageBuildHistory extends React.PureComponent<PageBuildHistoryProps & WithTranslation> {
   componentDidMount() {
     const {
       loadBuilds
@@ -39,7 +41,8 @@ class PageBuildHistory extends React.PureComponent<PageBuildHistoryProps> {
   render() {
     const {
       settings,
-      builds
+      builds,
+      t
     } = this.props;
 
     if (!settings || !builds) {
@@ -53,9 +56,9 @@ class PageBuildHistory extends React.PureComponent<PageBuildHistoryProps> {
         <Modal>
           <FormRunBuild/>
         </Modal>
-        <Link className="btn btn--small btn--icon-only" to={AppRoutes.SETTINGS} title="Settings">
+        <Link className="btn btn--small btn--icon-only" to={AppRoutes.SETTINGS} title={t('button.settings')}>
           <IconSettings mix="btn__icon icon--btn"/>
-          <span className="btn__text">Settings</span>
+          <span className="btn__text">{t('button.settings')}</span>
         </Link>
       </Header>
       <Main mod={`build-history`}>
@@ -68,7 +71,7 @@ class PageBuildHistory extends React.PureComponent<PageBuildHistoryProps> {
             </li>
           ))}
         </ul>
-        <button className="build-history__show-more-btn btn btn--small" type="button">Show more</button>
+        <button className="build-history__show-more-btn btn btn--small" type="button">{t('button.show-more')}</button>
       </Main>
       <Footer/>
     </React.Fragment>;
@@ -86,4 +89,4 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PageBuildHistory);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(PageBuildHistory));

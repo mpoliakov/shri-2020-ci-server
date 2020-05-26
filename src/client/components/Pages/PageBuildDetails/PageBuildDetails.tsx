@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {AppRoutes} from '@core/const';
 import {Link, match} from 'react-router-dom';
 
+import {withTranslation, WithTranslation} from 'react-i18next';
+
 import Header from '@components/Layout/Header/Header';
 import Main from '@components/Layout/Main/Main';
 import Footer from '@components/Layout/Footer/Footer';
@@ -38,7 +40,7 @@ export interface PageBuildDetailsProps {
   handleSubmit: (evt: any) => void;
 }
 
-class PageBuildDetails extends React.PureComponent<PageBuildDetailsProps> {
+class PageBuildDetails extends React.PureComponent<PageBuildDetailsProps & WithTranslation> {
   componentDidMount() {
     const {
       match,
@@ -67,7 +69,8 @@ class PageBuildDetails extends React.PureComponent<PageBuildDetailsProps> {
       settings,
       build,
       log,
-      handleSubmit
+      handleSubmit,
+      t
     } = this.props;
 
     if (!settings || !build) {
@@ -82,12 +85,12 @@ class PageBuildDetails extends React.PureComponent<PageBuildDetailsProps> {
           <input type="hidden" name="commitHash" value={build.commitHash}/>
           <button className="btn btn--small btn--with-icon" type="submit">
             <IconRebuild mix="btn__icon icon--btn"/>
-            <span className="btn__text">Rebuild</span>
+            <span className="btn__text">{t('button.rebuild')}</span>
           </button>
         </form>
-        <Link className="btn btn--small btn--with-icon" to={AppRoutes.SETTINGS} title="Settings">
+        <Link className="btn btn--small btn--with-icon" to={AppRoutes.SETTINGS} title={t('button.settings')}>
           <IconSettings mix="btn__icon icon--btn"/>
-          <span className="btn__text">Settings</span>
+          <span className="btn__text">{t('button.settings')}</span>
         </Link>
       </Header>
       <Main mod={`build-details`}>
@@ -134,4 +137,4 @@ const mapDispatchToProps = (dispatch: AppDispatch, ownProps: any) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PageBuildDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(PageBuildDetails));

@@ -2,6 +2,9 @@ import './modal.scss';
 import './modal-dialog.scss';
 
 import React from 'react';
+
+import {withTranslation, WithTranslation} from 'react-i18next';
+
 import IconRunBuild from '@components/Controls/Icons/IconRunBuild/IconRunBuild';
 
 export interface ModalProps {
@@ -12,10 +15,10 @@ interface ModalState {
   show: boolean;
 }
 
-class Modal extends React.PureComponent<ModalProps, ModalState> {
+class Modal extends React.PureComponent<ModalProps & WithTranslation, ModalState> {
   private readonly modalRef: React.RefObject<HTMLDivElement>;
 
-  constructor(props: ModalProps) {
+  constructor(props: ModalProps & WithTranslation) {
     super(props);
 
     this.state = {
@@ -61,15 +64,19 @@ class Modal extends React.PureComponent<ModalProps, ModalState> {
       show
     } = this.state;
 
+    const {
+      t
+    } = this.props;
+
     return <React.Fragment>
       <button className="btn btn--small btn--with-icon" type="button" onClick={this.toggleShow}>
         <IconRunBuild mix="btn__icon icon--btn"/>
-        <span className="btn__text">Run build</span>
+        <span className="btn__text">{t('button.run-build')}</span>
       </button>
       <div className={`modal` + (show ? `` : ` modal--closed`)} ref={this.modalRef} onClick={this.handleOutsideClick}>
         <div className="modal-dialog">
-          <h3 className="modal-dialog__heading heading heading--h3">New build</h3>
-          <p className="modal-dialog__text">Enter the commit hash which you want to build.</p>
+          <h3 className="modal-dialog__heading heading heading--h3">{t('modal.title')}</h3>
+          <p className="modal-dialog__text">{t('modal.text')}</p>
           {React.cloneElement(this.props.children, { handleCancelClick: this.toggleShow })}
         </div>;
       </div>
@@ -77,4 +84,4 @@ class Modal extends React.PureComponent<ModalProps, ModalState> {
   }
 }
 
-export default Modal;
+export default withTranslation()(Modal);
