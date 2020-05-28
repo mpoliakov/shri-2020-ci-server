@@ -3,16 +3,17 @@ import './footer.scss';
 import React from 'react';
 
 import {withTranslation, WithTranslation} from 'react-i18next';
+import {Lang, LangHelper} from '../../../i18n/i18n';
 
 const Footer: React.FC<WithTranslation> = ({t, i18n}) => {
   const switchLangToRu = (evt: React.MouseEvent) => {
     evt.preventDefault();
-    i18n.changeLanguage('ru');
+    LangHelper.changeLanguage(Lang.ru);
   };
 
   const switchLangToEn = (evt: React.MouseEvent) => {
     evt.preventDefault();
-    i18n.changeLanguage('en');
+    LangHelper.changeLanguage(Lang.en);
   };
 
   return (
