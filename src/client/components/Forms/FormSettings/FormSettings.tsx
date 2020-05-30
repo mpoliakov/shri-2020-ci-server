@@ -6,6 +6,8 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {withRouter} from 'react-router-dom';
 
+import {withTranslation, WithTranslation} from 'react-i18next';
+
 import {AppRoutes} from '@core/const';
 import {getError, getLoading, getSettings} from '@reducer/settings/selectors';
 import SettingsOperation from '@reducer/settings/operation';
@@ -23,13 +25,14 @@ export interface FormSettingsProps {
   handleSubmit: (evt: any) => void
 }
 
-class FormSettings extends React.PureComponent<FormSettingsProps> {
+class FormSettings extends React.PureComponent<FormSettingsProps & WithTranslation> {
   render() {
     const {
       settings,
       loading,
       error,
-      handleSubmit
+      handleSubmit,
+      t
     } = this.props;
 
     const {
@@ -40,22 +43,22 @@ class FormSettings extends React.PureComponent<FormSettingsProps> {
     } = settings || {};
 
     return <form className="build-settings__form form" action="/" method="post" onSubmit={handleSubmit}>
-      <ControlGroup label="GitHub repository" required={true} name="repoName" defaultValue={repoName}
+      <ControlGroup label={t('page.settings.form.label-repo')} required={true} name="repoName" defaultValue={repoName}
                     placeholder="user-name/repo-name"/>
-      <ControlGroup label="Build command" required={true} name="buildCommand" defaultValue={buildCommand}
+      <ControlGroup label={t('page.settings.form.label-command')} required={true} name="buildCommand" defaultValue={buildCommand}
                     placeholder="npm i && npm run build"/>
-      <ControlGroup label="Main branch" required={false} name="mainBranch" defaultValue={mainBranch}
+      <ControlGroup label={t('page.settings.form.label-branch')} required={false} name="mainBranch" defaultValue={mainBranch}
                     placeholder="master"/>
       <label className="form__control-group form__control-group--sync-time">
-        <span className="form__label">Synchronize every</span>
+        <span className="form__label">{t('page.settings.form.label-sync')}</span>
         <input className="form__input" type="number" name="period" defaultValue={period}/>
-        <span className="form__input-hint">minutes</span>
+        <span className="form__input-hint">{t('page.settings.form.label-min')}</span>
       </label>
       <div className="form__control-group">
-        <button className="btn btn--accent" type="submit" disabled={loading}>Save</button>
+        <button className="btn btn--accent" type="submit" disabled={loading}>{t('button.save')}</button>
         {loading ?
-          <a className="btn btn--disabled" href="#">Cancel</a> :
-          <Link className="btn" to={AppRoutes.HOME}>Cancel</Link>
+          <a className="btn btn--disabled" href="#">{t('button.cancel')}</a> :
+          <Link className="btn" to={AppRoutes.HOME}>{t('button.cancel')}</Link>
         }
       </div>
       {error && <div className="form__control-group">
@@ -91,4 +94,4 @@ const mapDispatchToProps = (dispatch: AppDispatch, ownProps: any) => ({
   }
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FormSettings));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(FormSettings)));

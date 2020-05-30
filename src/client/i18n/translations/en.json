@@ -1,0 +1,41 @@
+{
+  "button": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "run-build": "Run build",
+    "new-build": "New build",
+    "rebuild": "Rebuild",
+    "settings": "Settings",
+    "show-more": "Show more"
+  },
+  "footer": {
+    "support": "Support",
+    "learning": "Learning"
+  },
+  "page": {
+    "start-screen": {
+      "configure": "Configure repository connection and synchronization settings",
+      "open-settings": "Open settings"
+    },
+    "settings": {
+      "title": "Settings",
+      "text": "Configure repository connection and synchronization settings.",
+      "form": {
+        "label-repo": "GitHub repository",
+        "label-command": "Build command",
+        "label-branch": "Main branch",
+        "label-sync": "Synchronize every",
+        "label-min": "min"
+      }
+    },
+    "build-history": {
+      "form-run-build": {
+        "label-hash": "Commit hash"
+      }
+    }
+  },
+  "modal": {
+    "title": "New build",
+    "text": "Enter the commit hash which you want to build."
+  }
+}

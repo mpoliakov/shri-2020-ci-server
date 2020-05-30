@@ -5,6 +5,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
+import {withTranslation, WithTranslation} from 'react-i18next';
+
 import {AppRoutes} from '@core/const';
 import BuildOperation from '@reducer/build/operation';
 import ControlGroup from '@components/Forms/ControlGroup/ControlGroup';
@@ -15,18 +17,19 @@ export interface FormRunBuildProps {
   handleSubmit: (evt: any) => void;
 }
 
-class FormRunBuild extends React.PureComponent<FormRunBuildProps> {
+class FormRunBuild extends React.PureComponent<FormRunBuildProps & WithTranslation> {
   render() {
     const {
       handleCancelClick,
-      handleSubmit
+      handleSubmit,
+      t
     } = this.props;
 
     return <form className="modal-dialog__form form" action="/" method="post" onSubmit={handleSubmit}>
-      <ControlGroup required={true} name="commitHash" placeholder="Commit hash"/>
+      <ControlGroup required={true} name="commitHash" placeholder={t('page.build-history.form-run-build.label-hash')}/>
       <div className="form__control-group">
-        <button className="btn btn--accent" type="submit">Run build</button>
-        <button className="btn" type="button" onClick={handleCancelClick}>Cancel</button>
+        <button className="btn btn--accent" type="submit">{t('button.run-build')}</button>
+        <button className="btn" type="button" onClick={handleCancelClick}>{t('button.cancel')}</button>
       </div>
     </form>;
   }
@@ -45,4 +48,4 @@ const mapDispatchToProps = (dispatch: AppDispatch, ownProps: any) => ({
   }
 });
 
-export default withRouter(connect(null, mapDispatchToProps)(FormRunBuild));
+export default withRouter(connect(null, mapDispatchToProps)(withTranslation()(FormRunBuild)));
